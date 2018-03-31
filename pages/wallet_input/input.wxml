@@ -25,16 +25,20 @@
                     <view class="weui-label">地址</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <input bindinput="onAddInput" bindblur='onAddBlur' class="weui-input" placeholder="请输入地址" />
+                    <input bindinput="onAddInput" bindblur='onAddBlur' class="weui-input" placeholder="请输入地址" value="{{address}}">
+                    </input>
                 </view>
-                <view class="weui-cell__ft" style="flex-direction:row;">
-                 <!--
-                 <icon type="warn" size="23" color="#E64340" wx:if="{{showInputTip}}"></icon>
-                 -->
-                  <view bindtap="onPasteTap" class="weui-vcode-btn">粘贴</view>
-                  <image bindtap="onScanTap" class="weui-vcode-img" mode="aspectFit" src="../../images/scan_30.png" style="width:26px;padding-right:15px"></image>
+                <view class="weui-cell__ft">
+                    <icon type="warn" size="23" color="#E64340" wx:if="{{showInputTip}}"></icon>
+                </view>
+                <view class="weui-cell__ft">
+                    <view bindtap="onPasteTap" class="weui-vcode-btn">粘贴</view>
+                </view>
+                    
+                <view class="weui-cell__ft">
+                    <image bindtap="onScanTap" class="weui-vcode-img" mode="aspectFit" src="../../images/scan_30.png" style="width:26px;padding-right:15px"></image>
+                </view>    
 
-                </view>
             </view>
 
         </view>
