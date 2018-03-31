@@ -1,0 +1,43 @@
+<view class="page">
+    <view class="page__hd">
+      <view class="weui-flex">
+        <view class="weui-flex__item">
+          <view class="page__title">安全钱包</view>
+          <view class="page__desc">无需导入秘钥，确保钱包安全</view>
+        </view>
+        <image bindtap="onBtnScan" class="kind-list__img" src="wallet.png"></image>
+      </view>
+    </view>
+        
+        <view class="weui-flex">
+          <view class="weui-flex__item">
+            <view class="weui-cells__title">数字货币(Coins)</view>
+          </view>  
+          <image bindtap="onAddTap" class="weui-vcode-img" mode="aspectFit" src="add.png" style="width:18px;padding-right:15px;"></image>
+        </view>  
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__hd">
+                    <image src="{{itemIcon}}" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+                </view>
+                <view class="weui-cell__bd">以太坊(ETH)</view>
+                <view class="weui-cell__ft">{{balance}}</view>
+            </view>
+        </view>
+
+        <view class="weui-cells__title">代币(Tokens)</view>
+        <view class="weui-cells weui-cells_after-title" wx:for="{{balList}}">
+            <view class="weui-cell">
+                <view class="weui-cell__hd">
+                    <image src="{{itemIcon}}" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+                </view>
+                <view class="weui-cell__bd">{{item.name}}</view>
+                <view class="weui-cell__ft">{{item.balance}}</view>
+            </view>
+        </view>
+
+        <view>
+          {{testContent}}
+        </view>
+    
+</view>

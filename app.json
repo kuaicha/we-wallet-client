@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/input/input",
+    "pages/list/list",
+    "pages/logs/logs",
+    "pages/wallet_input/input"
+  ],
+
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "块查",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#7A7E83",
+    "selectedColor": "#3cc51f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/input/input",
+        "text": "即查即走",
+        "iconPath": "images/quiry_81_grey.png",
+        "selectedIconPath": "images/quiry_81_green.png"
+      },
+      {
+        "pagePath": "pages/list/list",
+        "text": "安全钱包",
+        "iconPath": "images/wallet_81_grey.png",
+        "selectedIconPath": "images/wallet_81_grey.png"
+      },
+      {
+        "pagePath": "pages/list/list",
+        "text": "代币钱包",
+        "iconPath": "images/wallet_81_grey.png",
+        "selectedIconPath": "images/wallet_81_grey.png"
+      }
+    ]
+  }
+}

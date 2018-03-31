@@ -1,0 +1,5 @@
+/* pages/list/list.wxss */
+
+.kind-list__img {
+  width: 60px; height: 60px;
+}

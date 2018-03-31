@@ -1,0 +1,70 @@
+<!--input.wxml-->
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+    <view class="page__hd">
+        <view class="weui-flex">
+          <view class="weui-flex__item">
+            <view class="page__title">即查即走</view>
+            <view class="page__desc">请扫码或输入区块链钱包地址</view>
+          </view>
+            <image bindtap="onBtnScan" class="kind-list__img" src="scan.png"></image>
+        </view>
+    </view>
+    <view class="page__bd">
+        <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
+        <form bindsubmit="formSubmit" bindreset="formReset">
+          <view class="weui-cells__title"></view>
+          <view class="weui-cells weui-cells_after-title">
+              <view class="weui-cell weui-cell_input">
+                  <view class="weui-cell__hd">
+                      <view class="weui-label">钱包地址：</view>
+                  </view>
+                  <view class="weui-cell__bd" >
+                      <input  bindblur="onBlur" bindinput="onInput" class="weui-input" name='address' placeholder="0x123..." value="{{address}}" style="{{textAlign}}"/>
+                  </view>
+                  <view class="weui-cell__ft" style="display:flex; justify-content: center">
+                    <image bindtap="onPasteTap" class="weui-vcode-img" mode="aspectFit" src="paste.png" style="width:26px"></image>
+                  </view>
+              </view>
+          </view>
+          <view class="weui-cells__tips">输入地址为：{{addressTip}}</view>
+
+          <view class="weui-btn-area">
+            <button formType="submit" class="weui-btn" type="primary">查看钱包</button>
+          </view>
+
+        </form>  
+    </view>
+    <view wx:if="{{queried}}">
+      <view class="weui-panel weui-panel_access">
+            <view class="weui-panel__hd">该地址拥有的虚拟货币如下：</view>
+            <view class="weui-panel__bd">
+                <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image src='{{coinLogoSrc}}' class="weui-media-box__thumb"/>
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                        <view class="weui-media-box__title">币种：{{coinName}}</view>
+                        <view class="weui-media-box__desc">余额：{{coinBalance}}</view>
+                    </view>
+                </navigator>
+            </view>
+            
+            <!--
+              <view class="weui-panel__ft">
+                  <view class="weui-cell weui-cell_access weui-cell_link">
+                      <view class="weui-cell__bd">查看更多</view>
+                      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                  </view>
+              </view>
+            -->
+
+      </view>
+      <view class="weui-cells__tips" style="color:red">注意！能够查看钱包余额并不代表您拥有该钱包中的数字资产</view>
+    </view>
+      <!--
+        <view>
+          {{testContent}}
+        </view>
+      -->
+
+</view>

@@ -1,0 +1,13 @@
+/* input.wxss */
+
+.weui-label {
+font-size: 100%
+}
+
+.kind-list__img {
+  width: 60px; height: 60px;
+}
+
+
+.weui-vcode-btn{display:flex; margin: auto; padding:0 .7em 0 .7em;border-left:1px solid #e5e5e5;
+}
