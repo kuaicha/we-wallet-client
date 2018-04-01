@@ -44,6 +44,7 @@
         </view>
             
         <view class="weui-cells__tips">{{addressTip}}</view>
+        <view class="weui-cells__tips" style="color:red">{{addressAlarm}}</view>
         <text>\n</text>
         
         <checkbox-group bindchange="bindAgreeChange">

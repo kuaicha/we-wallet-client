@@ -2,17 +2,17 @@ Page({
     data: {
 
         radioItems: [
-            {name: '比特币(BTC)', value: '1', checked: true},
-            {name: '以太坊(ETH)', value: '2'},
-            {name: '莱特币(LTC)', value: '3'},
-            {name: '瑞波币(XRP)', value: '4'},
+            {name: '比特币(BTC)', value: 1, checked: true},
+            {name: '以太坊(ETH)', value: 2},
+            {name: '莱特币(LTC)', value: 3},
+            {name: '瑞波币(XRP)', value: 4},
         ],
 
         isAgree: false,
-        isVerified: false,
+        isValidAdd: false,
         addressTip: "",
         address:"",
-        addressTipType:"weui-cells__tips"
+        addressAlarm: "",
     },
 
     radioChange: function (e) {
@@ -30,7 +30,10 @@ Page({
 
     onAddInput: function (e) {
       this.setData({
-        addressTip: "输入地址为：" + e.detail.value
+        addressTip: "输入地址为：" + e.detail.value,
+        addressAlarm: ""
+
+
       })
     },
 
@@ -38,7 +41,7 @@ Page({
       this.setData({
         address: e.detail.value
       })
-      this.verify();
+      this.preVerify();
     },
     
     onPasteTap: function () {
@@ -50,8 +53,9 @@ Page({
           that.setData({
             address: res.data,
             addressTip: "粘贴地址为：" + res.data,
+            addressAlarm: ""
           })
-          that.verify();
+          that.preVerify();
         }
       })
     },
@@ -65,9 +69,10 @@ Page({
           //console.log(res.result);
           that.setData({
             address: res.result,
-            addressTip: "扫码地址为：" + res.result
+            addressTip: "扫码地址为：" + res.result,
+            addressAlarm: ""
           })
-          that.verify();
+          that.preVerify();
         }
       })
 
@@ -75,51 +80,53 @@ Page({
 
     onConfirmTap: function(){
         var that = this;
+        this.verify();
 
     },
 
     preVerify: function(){
-      
-      const regCheck = /^\w+$/;
       var address = this.data.address;
+      const regCheck = /^\w+$/;
       //console.log("PreVerify() is called & this.address = " + address);
 
       if (!regCheck.test(address)) {
         console.log("Verify() Failed");
         this.setData({
-          addressTip: "输入地址错误！",
-          addressTipType:"weui-cells__alarm"
+          addressTip: "",
+          addressAlarm: "输入地址错误！请重新输入"
+      
         })
       }
     },
     
     verify: function(){
-        //console.log("Verify() is called" )
+        const regBTC = /^1\w{25,33}$/; //比特币地址规则
+        const regETH = /^0x\w{40}$/; //以太坊地址规则
+        const regLTC = /^L\w{25,33}$/; //莱特币地址规则
+        const regXRP = /^r\w{25,33}$/; //瑞波币地址规则
 
-        this.preVerify();
+        console.log("verify() is called" )
+        var address = this.data.address;
+        var coinType = 0;
 
-        var coinType = 1;
         var radioItems = this.data.radioItems;
         for (var i = 0, len = radioItems.length; i < len; ++i) {
           if (radioItems[i].checked){
-            var coinType = radioItems[i].value;
-            //console.log("CoinType = "+ coinType)
+            coinType = radioItems[i].value;
+            console.log("CoinType = "+ coinType)
           }
         }
 
-        switch(coinType){
-          case 2:
-            const regCheck = /^\w+$/;
-            var address = e.detail.value.address;
-            console.log("Address：" + address);
-
-            if (regCheck.test(address)) {
-              console.log("test passed");
-              this.addBalanceQuery(address);
+        switch (coinType) {
+     
+          case 1:
+            console.log("BTC Address：" + address);
+            if (regBTC.test(address)) {
+              console.log("BTC test passed");
             }
             else {
               wx.showModal({
-                content: '钱包地址错误，请重新输入',
+                content: '输入的不是合法比特币地址，请重新输入',
                 showCancel: false,
                 success: function (res) {
                   if (res.confirm) {
@@ -127,8 +134,66 @@ Page({
                   }
                 }
               });
-            }
+            };
             break;
+
+          case 2:
+            console.log("ETH Address：" + address);
+            if (regETH.test(address)) {
+              console.log("ETH test passed");
+            }
+            else {
+              wx.showModal({
+                content: '输入的不是合法以太坊地址，请重新输入',
+                showCancel: false,
+                success: function (res) {
+                  if (res.confirm) {
+                    //console.log('用户点击地址错误提示')
+                  }
+                }
+              });
+            };
+            break;
+
+          case 3:
+            console.log("LTC Address：" + address);
+            if (regLTC.test(address)) {
+              console.log("LTC test passed");
+            }
+            else {
+              wx.showModal({
+                content: '输入的不是合法莱特币地址，请重新输入',
+                showCancel: false,
+                success: function (res) {
+                  if (res.confirm) {
+                    //console.log('用户点击地址错误提示')
+                  }
+                }
+              });
+            };
+            break;
+          
+          case 4:
+            console.log("XRP Address：" + address);
+            if (regXRP.test(address)) {
+              console.log("XRP test passed");
+            }
+            else {
+              wx.showModal({
+                content: '输入的不是合法瑞波币地址，请重新输入',
+                showCancel: false,
+                success: function (res) {
+                  if (res.confirm) {
+                    //console.log('用户点击地址错误提示')
+                  }
+                }
+              });
+            };
+            break;
+
+          default:
+            console.log("Default Address：" + address);
+            console.log("switch coinType is " + coinType);
         }
     },
 
@@ -137,5 +202,64 @@ Page({
         this.setData({
             isAgree: !!e.detail.value.length
         });
-    }
+    },
+
+
+    createNewAddress: function (address) {
+      //查询余额
+      var kcURL = "http://139.199.213.120:8888/";
+      var that = this;
+
+      console.log("addBalanceQuery: " + address);
+
+      wx.showLoading({
+        title: '查询中',
+        mask: true
+      });
+
+      wx.request({
+
+        //请求地址
+        url: kcURL,
+
+        data: {
+          ad: address,
+        },
+
+        //请求方式
+        method: 'GET',
+
+        //成功之后回调
+        success: function (res) {
+          console.log("resp data:" + res.data[0]);
+
+          that.setData({
+            coinName: res.data[0].name,
+            coinBalance: res.data[0].balance,
+            //testContent: JSON.stringify(res.data),
+            coinLogoSrc: ("./" + res.data[0].name + "_logo_60.png"),
+            queried: true
+          });
+        },
+        //失败回调
+        fail: function (err) {
+          console.log("request fail:" + err);
+          wx.showToast({
+            title: '网络不给力，请稍后再试',
+            icon: 'none',
+            duration: 2000,
+          });
+
+        },
+
+        //结束回调
+        complete: function (err) {
+          console.log("request complete:" + err)
+          wx.hideLoading()
+        }
+      });
+
+    },
+
+
 });
