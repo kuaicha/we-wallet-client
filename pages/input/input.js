@@ -31,9 +31,6 @@ Page({
 
   onBlur: function (){
 
-    this.setData({
-      textAlign: "text-align:right"
-    })
   },
 
   onInput: function (e){

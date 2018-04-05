@@ -2,7 +2,7 @@
     <view class="page__hd">
         <view class="page__title">输入钱包地址</view>
     </view>
-    <view class="page__bd">
+    <view class="page__bd page__bd_spacing">
         <view class="weui-cells__title">选择币种</view>
         <view class="weui-cells weui-cells_after-title">
             <radio-group bindchange="radioChange">
@@ -63,5 +63,10 @@
         <view class="weui-btn-area">
             <button class="weui-btn" type="primary" disabled= "{{!isAgree}}" bindtap="onConfirmTap">确定</button>
         </view>
+        
+
     </view>
+    
 </view>
+
+

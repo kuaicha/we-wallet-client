@@ -8,7 +8,8 @@
         <image bindtap="onBtnScan" class="kind-list__img" src="wallet.png"></image>
       </view>
     </view>
-        
+
+    <view class="page__bd">
         <view class="weui-flex">
           <view class="weui-flex__item">
             <view class="weui-cells__title">数字货币(Coins)</view>
@@ -35,9 +36,14 @@
                 <view class="weui-cell__ft">{{item.balance}}</view>
             </view>
         </view>
-
+<!--
         <view>
           {{testContent}}
         </view>
-    
+-->
+    </view>
+ 
 </view>
+
+<image style="width:100%;height:68px;position:fixed;bottom:0;left:0;right:0" mode="top" src="../../images/advertisement.png"></image>
+

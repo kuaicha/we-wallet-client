@@ -1,10 +1,10 @@
 {
   "pages": [
-    "pages/wallet_input/input",
     "pages/index/index",
     "pages/input/input",
     "pages/list/list",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/wallet_input/input"
   ],
 
   "window": {

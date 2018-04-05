@@ -67,7 +67,7 @@ Page({
       wx.switchTab({
         url: '../input/input'
       }); 
-    }, 2000) //延迟时间 这里是1秒  
+    }, 800) //延迟时间,单位是毫秒
 
     //console.log("Index Loaded")
   },

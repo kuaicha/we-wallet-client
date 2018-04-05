@@ -79,9 +79,9 @@ Page({
     },
 
     onConfirmTap: function(){
-        var that = this;
+        var that = this;        
         this.verify();
-
+        
     },
 
     preVerify: function(){
@@ -123,6 +123,8 @@ Page({
             console.log("BTC Address：" + address);
             if (regBTC.test(address)) {
               console.log("BTC test passed");
+              this.createNewAddress(address,coinType)
+
             }
             else {
               wx.showModal({
@@ -141,6 +143,7 @@ Page({
             console.log("ETH Address：" + address);
             if (regETH.test(address)) {
               console.log("ETH test passed");
+              this.createNewAddress(address, coinType)
             }
             else {
               wx.showModal({
@@ -159,6 +162,7 @@ Page({
             console.log("LTC Address：" + address);
             if (regLTC.test(address)) {
               console.log("LTC test passed");
+              this.createNewAddress(address, coinType)
             }
             else {
               wx.showModal({
@@ -177,6 +181,7 @@ Page({
             console.log("XRP Address：" + address);
             if (regXRP.test(address)) {
               console.log("XRP test passed");
+              this.createNewAddress(address, coinType)
             }
             else {
               wx.showModal({
@@ -205,25 +210,26 @@ Page({
     },
 
 
-    createNewAddress: function (address) {
-      //查询余额
-      var kcURL = "http://139.199.213.120:8888/";
-      var that = this;
+    createNewAddress: function (address, coinType) {
 
-      console.log("addBalanceQuery: " + address);
+      //查询余额
+      var newCoinAddURL = "http://139.199.213.120:8888/new_address";
+      var that = this;
+      console.log("createNewAddress:" + address + ", coinType:" + coinType + "userOpenId:");
 
       wx.showLoading({
-        title: '查询中',
+        title: '正在查询钱包地址...',
         mask: true
       });
 
       wx.request({
-
         //请求地址
-        url: kcURL,
+        url: newCoinAddURL,
 
         data: {
           ad: address,
+          cid: coinType,
+          //uid: userOpenId
         },
 
         //请求方式
@@ -232,15 +238,10 @@ Page({
         //成功之后回调
         success: function (res) {
           console.log("resp data:" + res.data[0]);
-
-          that.setData({
-            coinName: res.data[0].name,
-            coinBalance: res.data[0].balance,
-            //testContent: JSON.stringify(res.data),
-            coinLogoSrc: ("./" + res.data[0].name + "_logo_60.png"),
-            queried: true
-          });
+          console.log("resp coinID:" + res.data[0].coinid);
+          console.log("resp coinBalance:" + res.data[0].balance);
         },
+
         //失败回调
         fail: function (err) {
           console.log("request fail:" + err);
@@ -257,9 +258,9 @@ Page({
           console.log("request complete:" + err)
           wx.hideLoading()
         }
+
       });
 
     },
-
 
 });
