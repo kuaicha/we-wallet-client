@@ -13,6 +13,7 @@ Page({
         addressTip: "",
         address:"",
         addressAlarm: "",
+        userOpenId:'olfLh5HCRaDHswZahdzH9R4BAUec'
     },
 
     radioChange: function (e) {
@@ -108,6 +109,7 @@ Page({
         console.log("verify() is called" )
         var address = this.data.address;
         var coinType = 0;
+        var userOpenId = this.data.userOpenId
 
         var radioItems = this.data.radioItems;
         for (var i = 0, len = radioItems.length; i < len; ++i) {
@@ -123,7 +125,7 @@ Page({
             console.log("BTC Address：" + address);
             if (regBTC.test(address)) {
               console.log("BTC test passed");
-              this.createNewAddress(address,coinType)
+              this.createNewAddress(address, coinType,userOpenId)
 
             }
             else {
@@ -143,7 +145,7 @@ Page({
             console.log("ETH Address：" + address);
             if (regETH.test(address)) {
               console.log("ETH test passed");
-              this.createNewAddress(address, coinType)
+              this.createNewAddress(address, coinType,userOpenId)
             }
             else {
               wx.showModal({
@@ -162,7 +164,7 @@ Page({
             console.log("LTC Address：" + address);
             if (regLTC.test(address)) {
               console.log("LTC test passed");
-              this.createNewAddress(address, coinType)
+              this.createNewAddress(address, coinType,userOpenId)
             }
             else {
               wx.showModal({
@@ -181,7 +183,7 @@ Page({
             console.log("XRP Address：" + address);
             if (regXRP.test(address)) {
               console.log("XRP test passed");
-              this.createNewAddress(address, coinType)
+              this.createNewAddress(address, coinType,userOpenId)
             }
             else {
               wx.showModal({
@@ -210,12 +212,12 @@ Page({
     },
 
 
-    createNewAddress: function (address, coinType) {
+    createNewAddress: function (address, coinType, userOpenId) {
 
       //查询余额
       var newCoinAddURL = "http://139.199.213.120:8888/new_address";
       var that = this;
-      console.log("createNewAddress:" + address + ", coinType:" + coinType + "userOpenId:");
+      console.log("createNewAddress:" + address + ", coinType:" + coinType + "userOpenId:" + userOpenId);
 
       wx.showLoading({
         title: '正在查询钱包地址...',
@@ -229,7 +231,7 @@ Page({
         data: {
           ad: address,
           cid: coinType,
-          //uid: userOpenId
+          uoid: userOpenId
         },
 
         //请求方式
@@ -237,9 +239,10 @@ Page({
 
         //成功之后回调
         success: function (res) {
-          console.log("resp data:" + res.data[0]);
-          console.log("resp coinID:" + res.data[0].coinid);
-          console.log("resp coinBalance:" + res.data[0].balance);
+          console.log("resp data: " + res.data[0]);
+          console.log("resp coinID: " + res.data[0].coinid);
+          console.log("resp coinBalance: " + res.data[0].balance);
+          //console.log("resp userId: " + res.data[0].userid)
         },
 
         //失败回调
