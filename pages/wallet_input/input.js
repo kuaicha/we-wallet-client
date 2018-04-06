@@ -242,7 +242,7 @@ Page({
           console.log("resp data: " + res.data[0]);
           console.log("resp coinID: " + res.data[0].coinid);
           console.log("resp coinBalance: " + res.data[0].balance);
-          //console.log("resp userId: " + res.data[0].userid)
+          console.log("resp userId: " + res.data[0].userid)
         },
 
         //失败回调

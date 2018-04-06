@@ -4,9 +4,9 @@
     "pages/input/input",
     "pages/list/list",
     "pages/logs/logs",
-    "pages/wallet_input/input"
+    "pages/wallet_input/input",
+    "pages/test/test"
   ],
-
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
@@ -32,10 +32,10 @@
         "selectedIconPath": "images/wallet_81_grey.png"
       },
       {
-        "pagePath": "pages/list/list",
-        "text": "代币钱包",
-        "iconPath": "images/wallet_81_grey.png",
-        "selectedIconPath": "images/wallet_81_grey.png"
+        "pagePath": "pages/test/test",
+        "text": "测试页",
+        "iconPath": "",
+        "selectedIconPath": ""
       }
     ]
   }

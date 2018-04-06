@@ -1,10 +1,14 @@
 //app.js
 App({
+
   onLaunch: function () {
     // 展示本地存储能力
     var logs = wx.getStorageSync('logs') || []
-    logs.unshift(Date.now())
-    wx.setStorageSync('logs', logs)
+    logs.unshift(Date.now());
+    wx.setStorageSync('logs', logs);
+
+    //this.globalData.uid = wx.getStorageSync('uid');
+    //console.log("this.globalData.uid = " + this.globalData.uid);
 
     // 登录
     wx.login({
@@ -33,8 +37,11 @@ App({
       }
     })
   },
+
   globalData: {
     userInfo: null,
+    hasLogin: false,
+    uid: wx.getStorageSync('uid')
   }
 
   
