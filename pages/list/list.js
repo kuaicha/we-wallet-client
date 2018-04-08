@@ -10,14 +10,13 @@ Page({
       })
     }
 
-
 })
 
     /*
     onLoad: function(option){
       //console.log(option.ad)
 
-      var scanURL = "http://139.199.213.120:8888/balance";
+      var scanURL = app.globalData.kcURL + "balance/";
       var that = this;
 
       wx.request({

@@ -1,4 +1,8 @@
 // input.js
+
+//获取应用实例
+const app = getApp()
+
 Page({
 
   onPasteTap: function () {
@@ -102,7 +106,7 @@ Page({
 
   addBalanceQuery: function (address) {
     //查询余额
-    var kcURL = "http://139.199.213.120:8888/";
+    var kcURL = app.globalData.kcURL;
     var that = this;
 
     console.log("addBalanceQuery: " + address);
@@ -156,10 +160,59 @@ Page({
     
   },
 
+  userRegister: function () {
+    console.log("Login() is call");
+    var that = this;
+    var rgstURL = app.globalData.kcURL + "register/";
+    var userOpenId = null;
+    wx.login({
+      success: function (res) {
+        let _code = res.code;
+        if (_code) {
+          wx.request({
+            url: 'https://api.weixin.qq.com/sns/jscode2session',
+            data: {
+              // 小程序注册时生成的appid
+              'appid': 'wx4afa57fe3b6afd14',
+              // 小程序注册时生成的secret
+              'secret': '9881dc0e8f800cafa36425589ae1ffc9',
+              // wx.login()返回的登录凭证
+              'js_code': _code,
+              // 固定值
+              'grant_type': 'authorization_code'
+            },
+            success: res => {
+              console.log(res.data);
+              userOpenId = res.data.openid;
+              console.log("uoid is " + userOpenId);
+              wx.request({
+                url: rgstURL,
+                data: {
+                  uoid: userOpenId,
+                },
+                success: res => {
+                  console.log(res.data.userId);
+                  app.globalData.userId = res.data.userId
+                  wx.setStorageSync('userId', app.globalData.userId)
+                }
+              })
+            }
+          });
+        }
+      },
+      fail: res => {
+        wx.showToast({
+          title: '微信登录失败',
+          duration: 1500
+        });
+      }
+    });
+  },
+
   /**
   balanceQuery: function (coinName,address) {
     //查询余额
-    var kcURL = "http://139.199.213.120:8888/";
+    var kcURL = app.globalData.kcURL;
     var that = this;
 
     console.log("balanceQuery: " + coinName+ ", " + address);
@@ -229,7 +282,13 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    if (app.globalData.userId === "") {  //暂时用userId替代hasLogin，只要有userId就不需登录了。
+      console.log("local userId is null");
+      this.userRegister();
+    } else {
+      console.log("local userId is " + app.globalData.userId);
+    }
+
   },
 
   /**

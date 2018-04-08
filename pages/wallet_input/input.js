@@ -215,9 +215,9 @@ Page({
     createNewAddress: function (address, coinType, userOpenId) {
 
       //查询余额
-      var newCoinAddURL = "http://139.199.213.120:8888/new_address";
+      var newCoinAddURL = app.globalData.kcURL + 'new_address/';
       var that = this;
-      console.log("createNewAddress:" + address + ", coinType:" + coinType + "userOpenId:" + userOpenId);
+      console.log("createNewAddress:" + address + ", coinType:" + coinType + ",userOpenId:" + userOpenId);
 
       wx.showLoading({
         title: '正在查询钱包地址...',

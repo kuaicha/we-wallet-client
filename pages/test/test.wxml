@@ -8,7 +8,7 @@
       </block>
       <block>
         <text class="page-body-text">每个微信号中仅需登录一次</text>
-        <button class="page-body-button" type="primary" bindtap="clearUid">清空UID</button>
+        <button class="page-body-button" type="primary" bindtap="clearuserId">清空UID</button>
       </block>
     </view>
   </view>
