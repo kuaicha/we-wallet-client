@@ -161,7 +161,7 @@ Page({
   },
 
   userRegister: function () {
-    console.log("Login() is call");
+    console.log("userRegister() is call");
     var that = this;
     var rgstURL = app.globalData.kcURL + "register/";
     var userOpenId = null;

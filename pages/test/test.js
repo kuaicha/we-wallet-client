@@ -5,8 +5,6 @@ var app = getApp()
 Page({
 
   onShow: function () {
-
-
     var userId = app.globalData.userId;
     if (app.globalData.userId === "") {
       console.log("local userId is null");
@@ -19,9 +17,15 @@ Page({
   
 
   data: { },
-  
+
   clearuserId:function () {
     wx.clearStorageSync();
     app.globalData.userId = null
   },
+
+  test:function(){
+    wx.navigateTo({
+      url: '../list/list',
+    });
+  }
 })

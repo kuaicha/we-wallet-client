@@ -1,3 +1,7 @@
+
+//获取应用实例
+const app = getApp()
+
 Page({
     data: {
 
@@ -80,9 +84,12 @@ Page({
     },
 
     onConfirmTap: function(){
-        var that = this;        
-        this.verify();
-        
+      //console.log("onConfirmTap() is called");
+      var that = this;        
+      this.verify();
+      wx.switchTab({
+        url: '../list/list'
+      }); 
     },
 
     preVerify: function(){
@@ -214,13 +221,13 @@ Page({
 
     createNewAddress: function (address, coinType, userOpenId) {
 
-      //查询余额
+      //添加地址
       var newCoinAddURL = app.globalData.kcURL + 'new_address/';
       var that = this;
       console.log("createNewAddress:" + address + ", coinType:" + coinType + ",userOpenId:" + userOpenId);
 
       wx.showLoading({
-        title: '正在查询钱包地址...',
+        title: '正在查询余额...',
         mask: true
       });
 
