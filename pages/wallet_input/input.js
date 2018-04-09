@@ -226,11 +226,6 @@ Page({
       var that = this;
       console.log("createNewAddress:" + address + ", coinType:" + coinType + ",userOpenId:" + userOpenId);
 
-      wx.showLoading({
-        title: '正在查询余额...',
-        mask: true
-      });
-
       wx.request({
         //请求地址
         url: newCoinAddURL,
