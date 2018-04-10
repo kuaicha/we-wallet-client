@@ -17,14 +17,15 @@
           <image bindtap="onAddTap" class="weui-vcode-img" mode="aspectFit" src="add.png" style="width:18px;padding-right:15px;"></image>
         </view>  
         <view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell">
+            <view wx:for="{{balList}}" class="weui-cell">
                 <view class="weui-cell__hd">
-                    <image src="{{itemIcon}}" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+                 <image src="{{item.logoSrc}}" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
                 </view>
-                <view class="weui-cell__bd">以太坊(ETH)</view>
-                <view class="weui-cell__ft">{{balance}}</view>
+                <view class="weui-cell__bd">{{item.coinName}}: {{item.addAbbr}}</view>
+                <view class="weui-cell__ft">{{item.balance}}</view>
             </view>
         </view>
+
 
         <view class="weui-cells__title">代币(Tokens)</view>
         <view class="weui-cells weui-cells_after-title" wx:for="{{balList}}">

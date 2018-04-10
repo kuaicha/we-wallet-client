@@ -24,8 +24,6 @@ Page({
   },
 
   test:function(){
-    wx.navigateTo({
-      url: '../list/list',
-    });
+    console.log(app.globalData.coins[1].coinNameAbbr)
   }
 })

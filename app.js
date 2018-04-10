@@ -5,7 +5,13 @@ App({
     userInfo: null,
     userId: wx.getStorageSync('userId'), //获取userId
     //hasLogin: false,  //目前只需要获得userId，后面就不再每次都登录
-    kcURL: "http://139.199.213.120:8888/"
+    kcURL: "http://139.199.213.120:8888/",
+    coins: {
+      1: { "coinNameAbbr": "BTC", "coinNameCn": "比特币" },
+      2: { "coinNameAbbr": "ETH", "coinNameCn": "以太坊" },
+      3: { "coinNameAbbr": "LTC", "coinNameCn": "莱特币" },
+      4: { "coinNameAbbr": "XRP", "coinNameCn": "瑞波币" }
+    }
   },
 
   onLaunch: function () {
