@@ -117,7 +117,6 @@ Page({
         var address = this.data.address;
         var coinType = 0;
         var userOpenId = this.data.userOpenId
-
         var radioItems = this.data.radioItems;
         for (var i = 0, len = radioItems.length; i < len; ++i) {
           if (radioItems[i].checked){
