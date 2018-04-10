@@ -209,56 +209,6 @@ Page({
     });
   },
 
-  /**
-  balanceQuery: function (coinName,address) {
-    //查询余额
-    var kcURL = app.globalData.kcURL;
-    var that = this;
-
-    console.log("balanceQuery: " + coinName+ ", " + address);
-
-    wx.request({
-
-      //请求地址
-      url: kcURL,
-
-      data: {
-        ad: address,
-        cn: coinName
-      },
-
-      //请求方式
-      method: 'GET',
-
-      //成功之后回调
-      success: function (res) {
-        console.log("resp data:" + res.data)
-
-        that.setData({
-          coinName: res.data[0].name,
-          coinBalance: res.data[0].balance,
-          
-          testContent: JSON.stringify(res.data),
-          //balList: res.data
-          queried: true,
-          coinLogoSrc: res.data[0].name+"_logo_60.png"
-        })
-      },
-
-      //失败回调
-      fail: function (err) {
-        console.log("request fail:" + err)
-      },
-
-      //结束回调
-      complete: function (err) {
-        console.log("request complete:" + err)
-      }
-    })
-  },
-
-
-   */
 
   /**
    * 页面的初始数据
@@ -268,7 +218,7 @@ Page({
     textAlign: "text-align:left",
     queried:false,
     resultLogoSrc:null,
-    coinLogoSrc:"./xrp_logo_60.png"
+    //coinLogoSrc:"./xrp_logo_60.png"
   },
 
   /**

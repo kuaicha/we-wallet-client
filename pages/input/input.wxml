@@ -30,7 +30,7 @@
           <view class="weui-cells__tips">输入地址为：{{addressTip}}</view>
 
           <view class="weui-btn-area">
-            <button formType="submit" class="weui-btn" type="primary">查看钱包</button>
+            <button formType="submit" class="weui-btn" type="primary">查询余额</button>
           </view>
 
         </form>  

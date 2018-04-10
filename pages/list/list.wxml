@@ -5,7 +5,7 @@
           <view class="page__title">安全钱包</view>
           <view class="page__desc">无需导入秘钥，确保资产安全</view>
         </view>
-        <image bindtap="onBtnScan" class="kind-list__img" src="wallet.png"></image>
+        <image bindtap="onBtnScan" class="kind-list__img" src="../../images/wallet.png"></image>
       </view>
     </view>
 
@@ -14,7 +14,7 @@
           <view class="weui-flex__item">
             <view class="weui-cells__title">数字货币(Coins)</view>
           </view>  
-          <image bindtap="onAddTap" class="weui-vcode-img" mode="aspectFit" src="add.png" style="width:18px;padding-right:15px;"></image>
+          <image bindtap="onAddTap" class="weui-vcode-img" mode="aspectFit" src="../../images/add.png" style="width:18px;padding-right:15px;"></image>
         </view>  
         <view class="weui-cells weui-cells_after-title">
             <view wx:for="{{balList}}" class="weui-cell">
@@ -26,7 +26,7 @@
             </view>
         </view>
 
-
+<!--
         <view class="weui-cells__title">代币(Tokens)</view>
         <view class="weui-cells weui-cells_after-title" wx:for="{{balList}}">
             <view class="weui-cell">
@@ -37,6 +37,7 @@
                 <view class="weui-cell__ft">{{item.balance}}</view>
             </view>
         </view>
+-->
 <!--
         <view>
           {{testContent}}

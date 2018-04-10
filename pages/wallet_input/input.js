@@ -17,7 +17,7 @@ Page({
         addressTip: "",
         address:"",
         addressAlarm: "",
-        userOpenId:'olfLh5HCRaDHswZahdzH9R4BAUec'
+        //userOpenId:'olfLh5HCRaDHswZahdzH9R4BAUec'
     },
 
     radioChange: function (e) {
@@ -87,9 +87,6 @@ Page({
       //console.log("onConfirmTap() is called");
       var that = this;        
       this.verify();
-      wx.switchTab({
-        url: '../list/list'
-      }); 
     },
 
     preVerify: function(){
@@ -116,7 +113,9 @@ Page({
         console.log("verify() is called" )
         var address = this.data.address;
         var coinType = 0;
-        var userOpenId = this.data.userOpenId
+        //var userOpenId = this.data.userOpenId
+        var userId = app.globalData.userId;
+        console.log("userId = " + userId);
         var radioItems = this.data.radioItems;
         for (var i = 0, len = radioItems.length; i < len; ++i) {
           if (radioItems[i].checked){
@@ -131,7 +130,7 @@ Page({
             console.log("BTC Address：" + address);
             if (regBTC.test(address)) {
               console.log("BTC test passed");
-              this.createNewAddress(address, coinType,userOpenId)
+              this.createNewAddress(address, coinType,userId)
 
             }
             else {
@@ -151,7 +150,7 @@ Page({
             console.log("ETH Address：" + address);
             if (regETH.test(address)) {
               console.log("ETH test passed");
-              this.createNewAddress(address, coinType,userOpenId)
+              this.createNewAddress(address, coinType,userId)
             }
             else {
               wx.showModal({
@@ -170,7 +169,7 @@ Page({
             console.log("LTC Address：" + address);
             if (regLTC.test(address)) {
               console.log("LTC test passed");
-              this.createNewAddress(address, coinType,userOpenId)
+              this.createNewAddress(address, coinType,userId)
             }
             else {
               wx.showModal({
@@ -189,7 +188,7 @@ Page({
             console.log("XRP Address：" + address);
             if (regXRP.test(address)) {
               console.log("XRP test passed");
-              this.createNewAddress(address, coinType,userOpenId)
+              this.createNewAddress(address, coinType,userId)
             }
             else {
               wx.showModal({
@@ -218,13 +217,13 @@ Page({
     },
 
 
-    createNewAddress: function (address, coinType, userOpenId) {
+    createNewAddress: function (address, coinType, userId) {
 
       //添加地址
       var newCoinAddURL = app.globalData.kcURL + 'new_address/';
       var that = this;
-      console.log("createNewAddress:" + address + ", coinType:" + coinType + ",userOpenId:" + userOpenId);
-
+      console.log("createNewAddress:" + address + ", coinType:" + coinType + ",userId:" + userId);
+      wx.showLoading()
       wx.request({
         //请求地址
         url: newCoinAddURL,
@@ -232,7 +231,7 @@ Page({
         data: {
           ad: address,
           cid: coinType,
-          uoid: userOpenId
+          uid: userId
         },
 
         //请求方式
@@ -243,7 +242,10 @@ Page({
           console.log("resp data: " + res.data[0]);
           console.log("resp coinID: " + res.data[0].coinid);
           console.log("resp coinBalance: " + res.data[0].balance);
-          console.log("resp userId: " + res.data[0].userid)
+          console.log("resp address: " + res.data[0].address)
+          wx.switchTab({
+            url: '../list/list'
+          }); 
         },
 
         //失败回调
@@ -264,7 +266,6 @@ Page({
         }
 
       });
-
     },
 
 });
