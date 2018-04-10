@@ -15,13 +15,13 @@ Page({
 
   //to do -- 展示余额列表
   onLoad: function () {
-    console.log("onLoad is called")
+    //console.log("onLoad is called")
     wx.showLoading({
       title: '数据刷新中...',
       mask: true
     });
 
-    var coinWalletURL = app.globalData.kcURL + "test/";
+    var coinWalletURL = app.globalData.kcURL + "cwqry/";
     var that = this;
 
     wx.request({
@@ -38,7 +38,7 @@ Page({
 
       //成功之后回调
       success: function (res) {
-        console.log("Resp Data String:" + JSON.stringify(res.data));
+        //console.log("Resp Data String:" + JSON.stringify(res.data));
         var resList = res.data;
 
         for (var i=0; i < resList.length; i++){
@@ -51,7 +51,7 @@ Page({
           balList:res.data
         })
         //console.log("Res Data Sting:" + JSON.stringify(res.data));
-        console.log("balList:" + that.data.balList);
+        //console.log("balList:" + JSON.stringify(that.data.balList));
       },
 
       //失败回调
@@ -68,13 +68,13 @@ Page({
   },
 
   onPullDownRefresh: function(){
-    console.log("onPullDownRefresh is called")
+    //console.log("onPullDownRefresh is called")
     wx.showLoading({
       title: '数据刷新中...',
       mask: true
     });
 
-    var coinWalletURL = app.globalData.kcURL + "test/";
+    var coinWalletURL = app.globalData.kcURL + "cwqry/";
     var that = this;
 
     wx.request({
@@ -91,7 +91,7 @@ Page({
 
       //成功之后回调
       success: function (res) {
-        console.log("Resp Data String:" + JSON.stringify(res.data));
+        //console.log("Resp Data String:" + JSON.stringify(res.data));
         var resList = res.data;
 
         for (var i = 0; i < resList.length; i++) {
@@ -104,8 +104,8 @@ Page({
           //testContent: JSON.stringify(res.data),
           balList: res.data
         })
-        //console.log("Res Data Sting:" + JSON.stringify(res.data));
-        console.log("balList:" + that.data.balList);
+        
+        //console.log("balList:" + JSON.stringify(that.data.balList));
       },
 
       //失败回调
