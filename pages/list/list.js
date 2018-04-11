@@ -188,6 +188,8 @@ Page({
 
   onHide: function(){
     app.globalData.balList = this.data.balList;
-    console.log("global balList = " + JSON.stringify(app.globalData.balList));
+    console.log("###onHide is called### \n global balList is set to: " + JSON.stringify(app.globalData.balList));
+    wx.setStorageSync('balList', app.globalData.balList);
+    console.log("balList is stored: " + JSON.stringify(app.globalData.balList));
   },
 })
