@@ -3,6 +3,8 @@
         <view class="page__title">输入钱包地址</view>
     </view>
     <view class="page__bd page__bd_spacing">
+    
+<!-- 降低用户使用门槛，屏蔽币种选择
         <view class="weui-cells__title">选择币种</view>
         <view class="weui-cells weui-cells_after-title">
             <radio-group bindchange="radioChange">
@@ -16,16 +18,18 @@
                 </label>
             </radio-group>
         </view>
+-->
+
         
-        <view class="weui-cells__title">钱包地址</view>
+        <view class="weui-cells__title"></view>
         <view class="weui-cells weui-cells_after-title">
 
-            <view class="weui-cell weui-cell_input weui-cell_vcode">
+            <view class="weui-cell weui-cell_input">
                 <view class="weui-cell__hd">
-                    <view class="weui-label">地址</view>
+                    <view class="weui-label">钱包地址:</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <input bindinput="onAddInput" bindblur='onAddBlur' class="weui-input" placeholder="请输入地址" value="{{address}}">
+                    <input bindinput="onAddInput" bindblur='onAddBlur' class="weui-input" placeholder="请输入地址" value="{{address}}" style="left-padding:1px;">
                     </input>
                 </view>
                 <view class="weui-cell__ft">
@@ -34,7 +38,6 @@
                 <view class="weui-cell__ft">
                     <view bindtap="onPasteTap" class="weui-vcode-btn">粘贴</view>
                 </view>
-                    
                 <view class="weui-cell__ft">
                     <image bindtap="onScanTap" class="weui-vcode-img" mode="aspectFit" src="../../images/scan_30.png" style="width:26px;padding-right:15px"></image>
                 </view>    
@@ -46,7 +49,8 @@
         <view class="weui-cells__tips">{{addressTip}}</view>
         <view class="weui-cells__tips" style="color:red">{{addressAlarm}}</view>
         <text>\n</text>
-        
+
+<!--为降低用户门槛，暂时注释掉该提醒
         <checkbox-group bindchange="bindAgreeChange">
             <label class="weui-agree" for="weuiAgree">
                 <view class="weui-agree__text">
@@ -60,10 +64,15 @@
             </label>
         </checkbox-group>
 
+
         <view class="weui-btn-area">
-            <button class="weui-btn" type="primary" disabled= "{{!isAgree}}" bindtap="onConfirmTap">确定</button>
+            <button class="weui-btn" type="primary" disabled= "{{!isAgree||!isValidAdd}}" bindtap="createNewAddress">确定</button>
         </view>
-        
+-->
+
+        <view class="weui-btn-area">
+            <button class="weui-btn" type="primary" bindtap="createNewAddress">确定</button>
+        </view>
 
     </view>
     

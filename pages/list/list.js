@@ -42,9 +42,9 @@ Page({
         var resList = res.data;
 
         for (var i=0; i < resList.length; i++){
-          res.data[i].logoSrc = "../../images/"+res.data[i].coinid+"_logo_20.png"
-          res.data[i].addAbbr = res.data[i].address.substr(0, 1) + "***" + res.data[i].address.substr(-4, 4)
-          //res.data[i].addAbbr = "***" + res.data[i].address.substr(-4, 4)
+          res.data[i].logoSrc = "../../images/"+res.data[i].coinid+"_logo_60.png"
+          res.data[i].addAbbr = res.data[i].address.substr(0, 8) + " ... " + res.data[i].address.substr(-8, 8)
+          //res.data[i].addAbbr = "***" + res.data[i].address.substr(-8, 8)
           res.data[i].coinName = app.globalData.coins[res.data[i].coinid].coinNameAbbr
         }
         that.setData({
@@ -101,9 +101,9 @@ Page({
         var resList = res.data;
 
         for (var i = 0; i < resList.length; i++) {
-          res.data[i].logoSrc = "../../images/"+res.data[i].coinid+"_logo_20.png"
-          res.data[i].addAbbr = res.data[i].address.substr(0, 1) + "***" + res.data[i].address.substr(-4, 4)
-          //res.data[i].addAbbr = "***" + res.data[i].address.substr(-4, 4)
+          res.data[i].logoSrc = "../../images/"+res.data[i].coinid+"_logo_60.png"
+          res.data[i].addAbbr = res.data[i].address.substr(0, 8) + " ... " + res.data[i].address.substr(-8, 8)
+          //res.data[i].addAbbr = "***" + res.data[i].address.substr(-8, 8)
           res.data[i].coinName = app.globalData.coins[res.data[i].coinid].coinNameAbbr
         }
         that.setData({
@@ -156,9 +156,9 @@ Page({
         var resList = res.data;
 
         for (var i = 0; i < resList.length; i++) {
-          res.data[i].logoSrc = "../../images/"+res.data[i].coinid+"_logo_20.png"
-          res.data[i].addAbbr = res.data[i].address.substr(0, 1) + "***" + res.data[i].address.substr(-4, 4)
-          //res.data[i].addAbbr = "***" + res.data[i].address.substr(-4, 4)
+          res.data[i].logoSrc = "../../images/"+res.data[i].coinid+"_logo_60.png"
+          res.data[i].addAbbr = res.data[i].address.substr(0, 8) + " ... " + res.data[i].address.substr(-8, 8)
+          //res.data[i].addAbbr = "***" + res.data[i].address.substr(-8, 8)
           res.data[i].coinName = app.globalData.coins[res.data[i].coinid].coinNameAbbr
         }
         that.setData({

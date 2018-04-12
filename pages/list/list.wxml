@@ -19,10 +19,13 @@
         <view class="weui-cells weui-cells_after-title">
             <view wx:for="{{balList}}" class="weui-cell">
                 <view class="weui-cell__hd">
-                 <image src="{{item.logoSrc}}" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+                 <image src="{{item.logoSrc}}" style="margin:2px;vertical-align: middle;width:40px; height: 40px;"></image>
                 </view>
-                <view class="weui-cell__bd">{{item.coinName}}: {{item.addAbbr}}</view>
-                <view class="weui-cell__ft">{{item.balance}}</view>
+                <view class="weui-cell__bd">
+                  <view style="padding-left:5px;">{{item.coinName}}:</view>  
+                  <view class="weui-cells__tips;" style="padding-left:5px;">{{item.addAbbr}}</view>
+                </view>
+                <view class="weui-cell__ft" style="color:black;">{{item.balance}}</view>
             </view>
         </view>
 

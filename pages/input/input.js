@@ -25,7 +25,6 @@ Page({
       success: (res) => {
         console.log(res.result);
         that.setData({
-          address: res.result,
           addressTip: res.result
         })
       }
@@ -34,12 +33,12 @@ Page({
   },
 
   onBlur: function (){
-
+    
   },
 
   onInput: function (e){
     this.setData({
-      addressTip: e.detail.value
+      addressTip: e.detail.value,
     })
   },
 
@@ -52,7 +51,9 @@ Page({
     
     const regCheck = /^\w+$/;
     var address = e.detail.value.address;
-    console.log("Address：" + address);
+
+    //console.log("e.detail.value:" + e.detail.value.address);
+    console.log("address：" + address);
 
     if(regCheck.test(address)) {
       console.log("test passed");
@@ -130,13 +131,13 @@ Page({
 
       //成功之后回调
       success: function (res) {
-        console.log("resp data:" + res.data[0]);
-
+        console.log("resp data:" + JSON.stringify(res.data));
+        console.log("resp header:" + JSON.stringify(res.header));
         that.setData({
           coinName: res.data[0].name,
           coinBalance: res.data[0].balance,
           //testContent: JSON.stringify(res.data),
-          coinLogoSrc: ("./"+res.data[0].name + "_logo_60.png"),
+          coinLogoSrc: ("../../images/"+"1"+ "_logo_60.png"),
           queried: true
         });
       },

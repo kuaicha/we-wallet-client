@@ -6,15 +6,18 @@
             <view class="page__title">即查即走</view>
             <view class="page__desc">请扫码或输入区块链钱包地址</view>
           </view>
-            <image bindtap="onBtnScan" class="kind-list__img" src="scan.png"></image>
+            <image class="kind-list__img" src="scan.png"></image>
         </view>
     </view>
+    <text>\n</text>
 
     <view class="page__bd">
         <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
-        <form bindsubmit="formSubmit" bindreset="formReset">
+        <form bindsubmit="formSubmit">
           <view class="weui-cells__title"></view>
           <view class="weui-cells weui-cells_after-title">
+
+<!-- 暂时隐藏第一种前端UI
               <view class="weui-cell weui-cell_input">
                   <view class="weui-cell__hd">
                       <view class="weui-label">钱包地址：</view>
@@ -26,13 +29,34 @@
                     <image bindtap="onPasteTap" class="weui-vcode-img" mode="aspectFit" src="paste.png" style="width:26px"></image>
                   </view>
               </view>
+-->
+              <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">钱包地址：</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input bindblur="onBlur" bindinput="onInput" class="weui-input" name='address' placeholder="0x123..." value="{{address}}">
+                    </input>
+                </view>
+                <view class="weui-cell__ft">
+                    <icon type="warn" size="23" color="#E64340" wx:if="{{showInputTip}}"></icon>
+                </view>
+                <view class="weui-cell__ft">
+                    <view bindtap="onPasteTap" class="weui-vcode-btn">粘贴</view>
+                </view>
+                <view class="weui-cell__ft">
+                    <image bindtap="onBtnScan" class="weui-vcode-img" mode="aspectFit" src="../../images/scan_30.png" style="width:26px;padding-right:15px"></image>
+                </view>    
+
+              </view>
+
+
           </view>
           <view class="weui-cells__tips">输入地址为：{{addressTip}}</view>
 
           <view class="weui-btn-area">
             <button formType="submit" class="weui-btn" type="primary">查询余额</button>
           </view>
-
         </form>  
     </view>
     <view wx:if="{{queried}}">
@@ -61,21 +85,12 @@
 
       </view>
       <view class="weui-cells__tips" style="color:red">注意！能够查看钱包余额并不代表您拥有该钱包中的数字资产</view>
-
     </view>
-
       <!--
         <view>
           {{testContent}}
         </view>
       -->
-
-   
-
 </view>
 
 <image style="width:100%;height:68px;position:fixed;bottom:0;left:0;right:0" mode="top" src="../../images/advertisement.png"></image>
-
-
-
-
