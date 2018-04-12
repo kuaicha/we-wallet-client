@@ -162,6 +162,13 @@ Page({
 
   userRegister: function () {
     console.log("userRegister() is call");
+    wx.setStorageSync('userId', 5)
+  },
+
+  
+  /* ###  DO NOT DELETE  ###
+  userRegister: function () {
+    console.log("userRegister() is call");
     var that = this;
     var rgstURL = app.globalData.kcURL + "register/";
     var userOpenId = null;

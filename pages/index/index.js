@@ -11,7 +11,6 @@ Page({
     userName: 'UnClick'
     
   },
-
   
   //事件处理函数
   onButtonTap: function() {
