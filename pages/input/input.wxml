@@ -59,7 +59,7 @@
           </view>
         </form>  
     </view>
-    <view wx:if="{{queried}}">
+    <view wx:if="{{isQueried}}">
       <view class="weui-panel weui-panel_access">
             <view class="weui-panel__hd">该地址拥有的虚拟货币如下：</view>
             <view class="weui-panel__bd">

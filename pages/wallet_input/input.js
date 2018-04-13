@@ -4,13 +4,14 @@ const app = getApp()
 Page({
     data: {
 
+/** 隐藏币种选择
         radioItems: [
             {name: '比特币(BTC)', value: 1, checked: true},
             {name: '以太坊(ETH)', value: 2},
             {name: '莱特币(LTC)', value: 3},
             {name: '瑞波币(XRP)', value: 4},
         ],
-
+ */
         isAgree: true,
         isValidAdd: false,
         addressTip: "",

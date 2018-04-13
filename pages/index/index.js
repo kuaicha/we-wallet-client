@@ -36,6 +36,7 @@ Page({
 
   onLoad: function () {
 
+/** 不在启动画面登录
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
@@ -63,6 +64,7 @@ Page({
       })
     };
     
+*/
     setTimeout(function () {
       wx.switchTab({
         url: '../input/input'
@@ -80,6 +82,8 @@ Page({
       hasUserInfo: true
     })
   },
+
+
 
 
   formSubmit: function (e) {

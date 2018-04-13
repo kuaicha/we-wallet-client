@@ -42,10 +42,11 @@ Page({
         var resList = res.data;
 
         for (var i=0; i < resList.length; i++){
-          res.data[i].logoSrc = "../../images/"+res.data[i].coinid+"_logo_60.png"
           res.data[i].addAbbr = res.data[i].address.substr(0, 8) + " ... " + res.data[i].address.substr(-8, 8)
           //res.data[i].addAbbr = "***" + res.data[i].address.substr(-8, 8)
-          res.data[i].coinName = app.globalData.coins[res.data[i].coinid].coinNameAbbr
+          res.data[i].coinNameAbbr = app.globalData.coins[res.data[i].coinid].coinNameAbbr
+          res.data[i].logoSrc = "../../images/" + res.data[i].coinNameAbbr + "_logo_60.png"
+          console.log(res.data[i].logoSrc)
         }
         that.setData({
           balList: res.data,
@@ -105,6 +106,7 @@ Page({
           res.data[i].addAbbr = res.data[i].address.substr(0, 8) + " ... " + res.data[i].address.substr(-8, 8)
           //res.data[i].addAbbr = "***" + res.data[i].address.substr(-8, 8)
           res.data[i].coinName = app.globalData.coins[res.data[i].coinid].coinNameAbbr
+          
         }
         that.setData({
           balList:res.data,

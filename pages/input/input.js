@@ -46,7 +46,7 @@ Page({
   formSubmit: function (e) {
    
     this.setData({
-      queried:false
+      isQueried:false
     });
     
     const regCheck = /^\w+$/;
@@ -137,8 +137,8 @@ Page({
           coinName: res.data[0].name,
           coinBalance: res.data[0].balance,
           //testContent: JSON.stringify(res.data),
-          coinLogoSrc: ("../../images/"+"1"+ "_logo_60.png"),
-          queried: true
+          coinLogoSrc: ("../../images/" + res.data[0].name + "_logo_60.png"),
+          isQueried: true
         });
       },
       //失败回调
@@ -224,7 +224,7 @@ Page({
   data: {
     testContent: null,
     textAlign: "text-align:left",
-    queried:false,
+    isQueried:false,
     resultLogoSrc:null,
     //coinLogoSrc:"./xrp_logo_60.png"
   },
