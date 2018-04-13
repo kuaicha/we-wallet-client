@@ -133,6 +133,7 @@ Page({
       success: function (res) {
         console.log("resp data:" + JSON.stringify(res.data));
         console.log("resp header:" + JSON.stringify(res.header));
+        console.log("resp statusCode:" + JSON.stringify(res.statusCode));
         that.setData({
           coinName: res.data[0].name,
           coinBalance: res.data[0].balance,

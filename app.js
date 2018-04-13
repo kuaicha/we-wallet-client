@@ -19,17 +19,17 @@ App({
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now());
     wx.setStorageSync('logs', logs);
-    //balList: wx.getStorageSync('balList')
+    balList: wx.getStorageSync('balList');
     console.log("###onLaunch is called ###");
     console.log("this.globalData.userId is:" + JSON.stringify(this.globalData.userId));
-    console.log("this.globalData.balList is:" + JSON.stringify(this.globalData.balList));
+    console.log("this.globalData.balList is loded:" + JSON.stringify(this.globalData.balList));
 
   },
 
   onHide: function () {
     console.log("app.onHide() is Called")
     wx.setStorageSync('balList', this.globalData.balList);
-    console.log("this.globalData.balList is: " + this.globalData.balList)
+    console.log("balList is stored: " + this.globalData.balList)
   }
   
 })

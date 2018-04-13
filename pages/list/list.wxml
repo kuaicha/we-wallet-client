@@ -22,7 +22,7 @@
                  <image src="{{item.logoSrc}}" style="margin:2px;vertical-align: middle;width:40px; height: 40px;"></image>
                 </view>
                 <view class="weui-cell__bd">
-                  <view style="padding-left:5px;">{{item.coinName}}:</view>  
+                  <view style="padding-left:5px;">{{item.coinNameAbbr}}:</view>  
                   <view class="weui-cells__tips;" style="padding-left:5px;">{{item.addAbbr}}</view>
                 </view>
                 <view class="weui-cell__ft" style="color:black;">{{item.balance}}</view>
