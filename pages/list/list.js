@@ -33,8 +33,15 @@ Page({
       //成功之后回调
       success: function (res) {
         //console.log("Resp Data String:" + JSON.stringify(res.data));
+        if (res.statusCode!=200){
+          wx.showToast({
+            title: '服务器维护中，数据未更新...',
+            icon: 'none',
+            duration: 2000,
+          });
+          return;
+        }
         var resList = res.data;
-
         for (var i = 0; i < resList.length; i++) {
           res.data[i].addAbbr = res.data[i].address.substr(0, 8) + " ... " + res.data[i].address.substr(-8, 8)
           //res.data[i].addAbbr = "***" + res.data[i].address.substr(-8, 8)
@@ -54,7 +61,7 @@ Page({
       fail: function (err) {
         console.log("request fail:" + err)
         wx.showToast({
-          title: '网络不给力，更新失败！',
+          title: '网络不给力，数据更新失败！',
           icon: 'none',
           duration: 2000,
         });
