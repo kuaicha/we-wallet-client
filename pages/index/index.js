@@ -35,7 +35,6 @@ Page({
 
 
   onLoad: function () {
-
 /** 不在启动画面登录
     if (app.globalData.userInfo) {
       this.setData({
@@ -71,6 +70,7 @@ Page({
       }); 
     }, 800) //延迟时间,单位是毫秒
 
+    
     //console.log("Index Loaded")
   },
 

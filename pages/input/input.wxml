@@ -94,6 +94,6 @@
       -->
 
     <view class="page__ft">
-        <image style="width:100%;height:100px" src="../../images/advertisement.png"></image>
+        <image style="width:100%;height:95px" src="../../images/advertisement.png"></image>
     </view>
 </view>
