@@ -28,6 +28,7 @@
                 <view class="weui-cell__ft" style="color:black;">{{item.balance}}</view>
             </view>
         </view>
+    </view>
 
 <!--
         <view class="weui-cells__title">代币(Tokens)</view>
@@ -46,13 +47,8 @@
           {{testContent}}
         </view>
 -->
-    </view>
-    <view class="page__bd">
-        <image style="width:100%;height:100%" src="../../images/advertisement.png"></image>
-    </view>
- 
+
+<image style="width:100%;height:100px" mode="scaleToFill" src="../../images/advertisement.png"></image>
+
 </view>
-
-<image style="width:100%;height:100px;position:fixed;bottom:0;left:0;right:0" mode="scaleToFill" src="../../images/advertisement.png"></image>
-
 

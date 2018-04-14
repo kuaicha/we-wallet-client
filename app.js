@@ -5,7 +5,7 @@ App({
     userId: wx.getStorageSync('userId'), //获取userId
     balList: wx.getStorageSync('balList'),
     //hasLogin: false,  //目前只需要获得userId，后面就不再每次都登录
-    kcURL: "https://qklkc.club/kc/",
+    kcURL: "https://qklkc.club/kc",
     coins: {
       1: { "coinNameAbbr": "BTC", "coinNameCn": "比特币" },
       2: { "coinNameAbbr": "ETH", "coinNameCn": "以太坊" },

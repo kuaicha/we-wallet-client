@@ -107,7 +107,7 @@ Page({
 
   addBalanceQuery: function (address) {
     //查询余额
-    var kcURL = app.globalData.kcURL;
+    var addQueryURL = app.globalData.kcURL + "/addqry";
     var that = this;
 
     console.log("addBalanceQuery: " + address);
@@ -120,7 +120,7 @@ Page({
     wx.request({
 
       //请求地址
-      url: kcURL,
+      url: addQueryURL,
 
       data: {
         ad: address,
@@ -131,9 +131,16 @@ Page({
 
       //成功之后回调
       success: function (res) {
-        console.log("resp data:" + JSON.stringify(res.data));
-        console.log("resp header:" + JSON.stringify(res.header));
-        console.log("resp statusCode:" + JSON.stringify(res.statusCode));
+
+        if (res.statusCode != 200) {
+          wx.showToast({
+            title: '服务器维护中，查询失败...',
+            icon: 'none',
+            duration: 2000,
+          });
+          return;
+        }
+
         that.setData({
           coinName: res.data[0].name,
           coinBalance: res.data[0].balance,
