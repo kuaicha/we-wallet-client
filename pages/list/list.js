@@ -15,7 +15,7 @@ Page({
 
   queryWallet: function(){
 
-    var coinWalletURL = app.globalData.kcURL + "cwqry/";
+    var coinWalletURL = app.globalData.kcURL + "/cwqry";
     var that = this;
 
     wx.request({

@@ -165,7 +165,7 @@ Page({
       var coinId = this.data.coinId;
       var userId = app.globalData.userId;
       //添加地址
-      var newCoinAddURL = app.globalData.kcURL + 'new_address/';
+      var newCoinAddURL = app.globalData.kcURL + '/new_address';
       var that = this;
       console.log("createNewAddress:" + address + ", coinId:" + coinId + ",userId:" + userId);
       wx.showLoading()
