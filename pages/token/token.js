@@ -6,7 +6,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tokenList: app.globalData.tokenList
+    tokenList: app.globalData.tokenList,
+    tokenAddList:app.globalData.tokenAddList,
+    defaultTokenAdd: app.globalData.defaultTokenAdd,
+    defaultTokenAddAbbr: app.globalData.defaultTokenAdd.substr(0, 8) + " ... " + app.globalData.defaultTokenAdd.substr(-8, 8)
+
   },
 
   onAddTap: function (e) {
@@ -28,7 +32,7 @@ Page({
 
       data: {
         uid: app.globalData.userId,
-        ad:'0xbCB2A11bb3420C521a0Baa8c8bb624C383E294A0'
+        ad: this.data.defaultTokenAdd
       },
 
       //请求方式

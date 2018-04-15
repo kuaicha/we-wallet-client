@@ -24,33 +24,7 @@ Page({
   },
 
   test: function () {
-    console.log("userRegister() is call");
-    var that = this;
-    var rgstURL = app.globalData.kcURL + "/register";
-    wx.login({
-      success: function (res) {
-        let _code = res.code;
-        if (_code) {
-          wx.request({
-            url: rgstURL,
-            data: {
-              'code': _code,
-            },
-            success: res => {
-              console.log("userId is:" + res.data.userId);
-              app.globalData.userId = res.data.userId
-              wx.setStorageSync('userId', app.globalData.userId)
-            }
-          });
-        }
-      },
-      fail: res => {
-        wx.showToast({
-          title: '微信登录失败',
-          duration: 1500
-        });
-      }
-    });
-  },
-
+    console.log("setStorageSync() is call");
+    wx.setStorageSync('defaultTokenAdd', '0xbCB2A11bb3420C521a0Baa8c8bb624C383E294A0');
+  }
 })

@@ -12,21 +12,43 @@
     <view class="page__bd">
         <view class="weui-flex">
           <view class="weui-flex__item">
-            <view class="weui-cells__title">数字代币(Tokens)</view>
+            <view class="weui-cells__title">代币钱包</view>
           </view>  
-          <image bindtap="onAddTap" class="weui-vcode-img" mode="aspectFit" src="../../images/add.png" style="width:18px;padding-right:15px;"></image>
-        </view>  
+          <image bindtap="onWalletAddTap" class="weui-vcode-img" mode="aspectFit" src="../../images/add.png" style="width:18px;padding-right:15px;"></image>
+        </view>
+
         <view class="weui-cells weui-cells_after-title">
-            <view wx:for="{{tokenList}}" class="weui-cell">
-                <view class="weui-cell__hd">
-                 <image src="../../images/ETH_logo_60.png" style="margin:2px;vertical-align: middle;width:40px; height: 40px;"></image>
-                </view>
+          <view  wx:if="{{defaultTokenAdd}}">
+            <navigator url="" class="weui-cell weui-cell_access" hover-class="weui-cell_active">
                 <view class="weui-cell__bd">
-                  <view style="padding-left:5px;">{{item.token_acronym}}:</view>  
-                  <view class="weui-cells__tips;" style="padding-left:5px;">{{item.conAddAbbr}}</view>
+                  <view class='weui-cells__tips'>
+                    {{defaultTokenAddAbbr}}
+                  </view>
                 </view>
-                <view class="weui-cell__ft" style="color:black;">{{item.balance}}</view>
-            </view>
+                <view wx:if="{{tokenAddList.length > 1}}" class="weui-cell__ft weui-cell__ft_in-access">选择</view>
+            </navigator>
+          </view>
+        </view>
+
+        <view wx:if="{{defaultTokenAdd}}">
+          <view class="weui-flex" >
+            <view class="weui-flex__item">
+              <view class="weui-cells__title">数字代币(Tokens)</view>
+            </view>  
+            <image bindtap="onAddTap" class="weui-vcode-img" mode="aspectFit" src="../../images/add.png" style="width:18px;padding-right:15px;"></image>
+          </view>  
+          <view class="weui-cells weui-cells_after-title">
+              <view wx:for="{{tokenList}}" class="weui-cell">
+                  <view class="weui-cell__hd">
+                  <image src="../../images/ETH_logo_60.png" style="margin:2px;vertical-align: middle;width:40px; height: 40px;"></image>
+                  </view>
+                  <view class="weui-cell__bd">
+                    <view style="padding-left:5px;">{{item.token_name}}({{item.token_acronym}}): </view>  
+                    <view class="weui-cells__tips;" style="padding-left:5px;">{{item.conAddAbbr}}</view>
+                  </view>
+                  <view class="weui-cell__ft" style="color:black;">{{item.balance}}</view>
+              </view>
+          </view>
         </view>
     </view>
 

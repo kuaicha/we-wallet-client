@@ -2,7 +2,9 @@
 App({
   
   globalData: {
-    userId: wx.getStorageSync('userId'), //获取userId
+    userId: wx.getStorageSync('userId'), //读取本地userId
+    tokenAddList: wx.getStorageSync('tokenAddList'), //读取本地token地址列表
+    defaultTokenAdd:wx.getStorageSync('defaultTokenAdd'), //读取默认本地token地址
     balList: wx.getStorageSync('balList'),
     tokenList: wx.getStorageSync('tokenList'),
     //hasLogin: false,  //目前只需要获得userId，后面就不再每次都登录
