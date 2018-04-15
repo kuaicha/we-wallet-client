@@ -9,11 +9,10 @@ Page({
     tokenList: app.globalData.tokenList,
     tokenAddList:app.globalData.tokenAddList,
     defaultTokenAdd: app.globalData.defaultTokenAdd,
-    defaultTokenAddAbbr: app.globalData.defaultTokenAdd.substr(0, 8) + " ... " + app.globalData.defaultTokenAdd.substr(-8, 8)
-
+    defaultTokenAddAbbr: app.globalData.defaultTokenAdd.substr(0, 8) + ' ... '+ app.globalData.defaultTokenAdd.substr(-8, 8)
   },
 
-  onAddTap: function (e) {
+  onWalletAddTap: function (e) {
     wx.navigateTo({
       url: '../token_input/token_input',
     })
@@ -26,13 +25,12 @@ Page({
     var that = this;
 
     wx.request({
-
       //请求地址
       url: tokenWalletURL,
 
       data: {
         uid: app.globalData.userId,
-        ad: this.data.defaultTokenAdd
+        ad: app.globalData.defaultTokenAdd
       },
 
       //请求方式
@@ -49,14 +47,17 @@ Page({
           });
           return;
         }
-        var resList = res.data;
+        var addList = res.data[0];
+        var resList = res.data[1];
         for (var i = 0; i < resList.length; i++) {
-          res.data[i].conAddAbbr = res.data[i].contract_address.substr(0, 8) + " ... " + res.data[i].contract_address.substr(-8, 8)
+          resList[i].conAddAbbr = resList[i].contract_address.substr(0, 8) + " ... " + resList[i].contract_address.substr(-8, 8)
         }
         that.setData({
-          tokenList: res.data
+          tokenList: resList,
+          tokenAddList:addList
         });
-        console.log("tokenList is set to:" + JSON.stringify(that.data.tokenList))        
+        console.log("tokenList is set to:" + JSON.stringify(that.data.tokenList)) 
+        console.log("tokenAddList is set to:" + JSON.stringify(that.data.tokenAddList))
       },
 
       //失败回调
@@ -112,6 +113,14 @@ Page({
     console.log("###Page onHide is called### \n global tokenList is set to: " + JSON.stringify(app.globalData.tokenList));
     wx.setStorageSync('tokenList', app.globalData.tokenList);
     console.log("tokenList is stored: " + JSON.stringify(wx.getStorageSync('tokenList')));
+    
+    for (var i=0; i<this.data.tokenAddList.length; i++){
+      this.data.tokenAddList[i].abbr = this.data.tokenAddList[i].address.substr(0, 10) + ' ... ' + this.data.tokenAddList[i].address.substr(-10, 10)
+    };
+    app.globalData.tokenAddList = this.data.tokenAddList;
+    wx.setStorageSync('tokenAddList', app.globalData.tokenAddList);
+    console.log("tokenAddList is stored: " + JSON.stringify(wx.getStorageSync('tokenAddList')));
+
   },
 
   /**
