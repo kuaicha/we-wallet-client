@@ -1,2 +1,55 @@
-<!--token.wxml-->
-<text>token.wxml</text>
+<view class="page">
+    <view class="page__hd">
+      <view class="weui-flex">
+        <view class="weui-flex__item">
+          <view class="page__title">Token钱包</view>
+          <view class="page__desc">管理你所有的Token(ERC20代币)</view>
+        </view>
+        <image class="kind-list__img" src="../../images/TokenWallet.png"></image>
+      </view>
+    </view>
+
+    <view class="page__bd">
+        <view class="weui-flex">
+          <view class="weui-flex__item">
+            <view class="weui-cells__title">数字代币(Tokens)</view>
+          </view>  
+          <image bindtap="onAddTap" class="weui-vcode-img" mode="aspectFit" src="../../images/add.png" style="width:18px;padding-right:15px;"></image>
+        </view>  
+        <view class="weui-cells weui-cells_after-title">
+            <view wx:for="{{tokenList}}" class="weui-cell">
+                <view class="weui-cell__hd">
+                 <image src="../../images/ETH_logo_60.png" style="margin:2px;vertical-align: middle;width:40px; height: 40px;"></image>
+                </view>
+                <view class="weui-cell__bd">
+                  <view style="padding-left:5px;">{{item.token_acronym}}:</view>  
+                  <view class="weui-cells__tips;" style="padding-left:5px;">{{item.conAddAbbr}}</view>
+                </view>
+                <view class="weui-cell__ft" style="color:black;">{{item.balance}}</view>
+            </view>
+        </view>
+    </view>
+
+<!--
+        <view class="weui-cells__title">代币(Tokens)</view>
+        <view class="weui-cells weui-cells_after-title" wx:for="{{balList}}">
+            <view class="weui-cell">
+                <view class="weui-cell__hd">
+                    <image src="{{itemIcon}}" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+                </view>
+                <view class="weui-cell__bd">{{item.name}}</view>
+                <view class="weui-cell__ft">{{item.balance}}</view>
+            </view>
+        </view>
+-->
+<!--
+        <view>
+          {{testContent}}
+        </view>
+-->
+
+    <view class="page__ft">
+        <image style="width:100%;height:95px" src="../../images/advertisement.png"></image>
+    </view>
+
+</view>

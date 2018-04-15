@@ -32,7 +32,7 @@ Page({
 
       //成功之后回调
       success: function (res) {
-        //console.log("Resp Data String:" + JSON.stringify(res.data));
+        console.log("Resp Data String:" + JSON.stringify(res.data));
         if (res.statusCode!=200){
           wx.showToast({
             title: '服务器维护中，数据未更新...',
@@ -97,10 +97,11 @@ Page({
   },
 
   onShow: function () {
+    this.queryWallet();
     wx.showLoading({
       title: '数据刷新中',
     });
-    this.queryWallet();
+
   },
 
   onHide: function(){

@@ -1,12 +1,79 @@
-// token.js
+const app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    tokenList: app.globalData.tokenList
   },
+
+  onAddTap: function (e) {
+    wx.navigateTo({
+      url: '../token_input/token_input',
+    })
+  },
+
+
+  queryTWallet: function () {
+
+    var tokenWalletURL = app.globalData.kcURL + "/twqry";
+    var that = this;
+
+    wx.request({
+
+      //请求地址
+      url: tokenWalletURL,
+
+      data: {
+        uid: app.globalData.userId,
+        ad:'0xbCB2A11bb3420C521a0Baa8c8bb624C383E294A0'
+      },
+
+      //请求方式
+      method: 'GET',
+
+      //成功之后回调
+      success: function (res) {
+        console.log("Resp Data String:" + JSON.stringify(res.data));
+        if (res.statusCode != 200) {
+          wx.showToast({
+            title: '服务器维护中，数据未更新...',
+            icon: 'none',
+            duration: 2000,
+          });
+          return;
+        }
+        var resList = res.data;
+        for (var i = 0; i < resList.length; i++) {
+          res.data[i].conAddAbbr = res.data[i].contract_address.substr(0, 8) + " ... " + res.data[i].contract_address.substr(-8, 8)
+        }
+        that.setData({
+          tokenList: res.data
+        });
+        console.log("tokenList is set to:" + JSON.stringify(that.data.tokenList))        
+      },
+
+      //失败回调
+      fail: function (err) {
+        console.log("request fail:" + err)
+        wx.showToast({
+          title: '网络不给力，数据更新失败！',
+          icon: 'none',
+          duration: 2000,
+        });
+      },
+
+      //结束回调
+      complete: function (err) {
+        console.log("request complete:" + err)
+        wx.hideLoading()
+      }
+    });
+  },
+
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -26,14 +93,21 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.queryTWallet();
+    wx.showLoading({
+      title: '数据刷新中...',
+      mask: true
+    });
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-  
+    app.globalData.tokenList = this.data.tokenList;
+    console.log("###Page onHide is called### \n global tokenList is set to: " + JSON.stringify(app.globalData.tokenList));
+    wx.setStorageSync('tokenList', app.globalData.tokenList);
+    console.log("tokenList is stored: " + JSON.stringify(wx.getStorageSync('tokenList')));
   },
 
   /**
@@ -47,7 +121,12 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+    console.log("onPullDownRefresh is called")
+    this.queryTWallet();
+    wx.showLoading({
+      title: '数据刷新中...',
+      mask: true
+    });
   },
 
   /**

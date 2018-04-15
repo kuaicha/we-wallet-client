@@ -21,6 +21,7 @@ Page({
         //userOpenId:'olfLh5HCRaDHswZahdzH9R4BAUec'
     },
 
+/**
     radioChange: function (e) {
       //console.log('radio发生change事件，携带value值为：', e.detail.value);
 
@@ -33,6 +34,7 @@ Page({
         radioItems: radioItems
       });
     },
+*/
 
     onAddInput: function (e) {
       this.setData({
@@ -142,6 +144,7 @@ Page({
         } 
       }
     },
+    
     
     bindAgreeChange: function (e) {
         this.setData({

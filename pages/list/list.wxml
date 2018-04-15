@@ -5,7 +5,7 @@
           <view class="page__title">安全钱包</view>
           <view class="page__desc">无需导入秘钥，确保资产安全</view>
         </view>
-        <image bindtap="onBtnScan" class="kind-list__img" src="../../images/wallet.png"></image>
+        <image class="kind-list__img" src="../../images/wallet.png"></image>
       </view>
     </view>
 

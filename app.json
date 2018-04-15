@@ -6,7 +6,8 @@
     "pages/logs/logs",
     "pages/wallet_input/input",
     "pages/test/test",
-    "pages/token/token"
+    "pages/token/token",
+    "pages/token_input/token_input"
   ],
   "window": {
     "backgroundTextStyle": "light",

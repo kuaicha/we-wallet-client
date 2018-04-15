@@ -6,7 +6,7 @@
             <view class="page__title">即查即走</view>
             <view class="page__desc">请扫码或输入区块链钱包地址</view>
           </view>
-            <image class="kind-list__img" src="scan.png"></image>
+            <image class="kind-list__img" src="../../images/query.png"></image>
         </view>
     </view>
     <text>\n</text>
