@@ -190,10 +190,11 @@ Page({
           console.log("resp data: " + res.data[0]);
           console.log("resp coinID: " + res.data[0].coinid);
           console.log("resp coinBalance: " + res.data[0].balance);
-          console.log("resp address: " + res.data[0].address)
+          console.log("resp address: " + res.data[0].address);
           wx.switchTab({
             url: '../list/list'
           }); 
+
         },
 
         //失败回调

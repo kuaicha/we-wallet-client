@@ -7,13 +7,13 @@ Page({
     balList: app.globalData.balList
   },
 
-  onAddTap: function(e){
+  onAddCoinWalletTap: function(e){
     wx.navigateTo({
       url: '../wallet_input/input',
     })
   },
 
-  queryWallet: function(){
+  queryCoinWallet: function(){
 
     var coinWalletURL = app.globalData.kcURL + "/cwqry";
     var that = this;
@@ -92,12 +92,12 @@ Page({
       mask: true
     });
 
-    this.queryWallet();
+    this.queryCoinWallet();
 
   },
 
   onShow: function () {
-    this.queryWallet();
+    this.queryCoinWallet();
     wx.showLoading({
       title: '数据刷新中',
     });
