@@ -9,7 +9,8 @@
     "pages/token/token",
     "pages/token_input/token_input",
     "pages/pick_default_add/pick_default_add",
-    "pages/ether_wallet/ether_wallet"
+    "pages/ether_wallet/ether_wallet",
+    "pages/wallet/wallet"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -47,6 +48,12 @@
         "text": "设置",
         "iconPath": "images/setting_81_grey.png",
         "selectedIconPath": "images/setting_81_green_full.png"
+      },
+      {
+        "pagePath": "pages/wallet/wallet",
+        "text": "钱包",
+        "iconPath": "images/wallet_81_grey.png",
+        "selectedIconPath": "images/wallet_81_green_full.png"
       }
     ]
   }
