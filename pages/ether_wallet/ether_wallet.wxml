@@ -1,0 +1,42 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+    <view class="page__hd">
+        <view class="page__title">请输入以太坊钱包地址</view>
+    </view>
+    <view class="page__bd page__bd_spacing">
+        
+        <view class="weui-cells__title"></view>
+        <view class="weui-cells weui-cells_after-title">
+
+             <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">钱包地址:</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input bindinput="onAddInput" bindblur='onAddBlur' class="weui-input" placeholder="输入钱包地址" value="{{address}}" style="left-padding:1px;">
+                    </input>
+                </view>
+                <view class="weui-cell__ft">
+                    <icon type="warn" size="23" color="#E64340" wx:if="{{showInputTip}}"></icon>
+                </view>
+                <view class="weui-cell__ft">
+                    <view bindtap="onPasteTap" class="weui-vcode-btn">粘贴</view>
+                </view>
+                <view class="weui-cell__ft">
+                    <image bindtap="onScanTap" class="weui-vcode-img" mode="aspectFit" src="../../images/scan_30.png" style="width:26px;padding-right:15px"></image>
+                </view>    
+            </view>
+
+
+        </view>
+            
+        <view class="weui-cells__tips">{{addressTip}}</view>
+        <view class="weui-cells__tips" style="color:red">{{addressAlarm}}</view>
+        <text>\n</text>
+
+        <view class="weui-btn-area">
+            <button class="weui-btn" type="primary" bindtap="createNewTWallet">确定</button>
+        </view>
+
+    </view>
+    
+</view>

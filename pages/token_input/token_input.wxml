@@ -1,0 +1,61 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+    <view class="page__hd">
+        <view class="page__title">请输入Token（ERC20)信息</view>
+    </view>
+    <view class="page__bd page__bd_spacing">
+        
+        <view class="weui-cells__title"></view>
+        <view class="weui-cells weui-cells_after-title">
+
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">合约地址:</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input bindinput="onConInput" bindblur='onConBlur' class="weui-input" placeholder="输入合约地址" value="{{conAddress}}" style="left-padding:1px;">
+                    </input>
+                </view>
+                <view class="weui-cell__ft">
+                    <icon type="warn" size="23" color="#E64340" wx:if="{{showInputTip}}"></icon>
+                </view>
+                <view class="weui-cell__ft">
+                    <view bindtap="onConPasteTap" class="weui-vcode-btn">粘贴</view>
+                </view>
+                <view class="weui-cell__ft">
+                    <image bindtap="onConScanTap" class="weui-vcode-img" mode="aspectFit" src="../../images/scan_30.png" style="width:26px;padding-right:15px"></image>
+                </view>    
+            </view>
+
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">名称:</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input bindinput="onNameInput" class="weui-input" placeholder="Token全称" style="left-padding:1px;">
+                    </input>
+                </view>
+            </view>
+
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">简称:</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input bindinput="onAcroInput" class="weui-input" placeholder="Token简称" style="left-padding:1px;">
+                    </input>
+                </view>
+            </view>
+
+
+        </view>
+        <view class="weui-cells__tips">{{conAddTip}}</view>
+        <view class="weui-cells__tips" style="color:red">{{conAddAlarm}}</view>
+        <text>\n</text>
+
+        <view class="weui-btn-area">
+            <button class="weui-btn" type="primary" bindtap="createNewToken">确定</button>
+        </view>
+
+    </view>
+    
+</view>

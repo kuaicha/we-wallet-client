@@ -1,0 +1,131 @@
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-tab">
+            <view class="weui-navbar" style=' background-color : white'>
+                <block wx:for="{{tabs}}" wx:key="*this">
+                    <view id="{{index}}" class="weui-navbar__item {{activeIndex == index ? 'weui-bar__item_on' : ''}}" bindtap="tabClick">
+                        <view class="weui-navbar__title">{{item}}</view>
+                    </view>
+                </block>
+                <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);"></view>
+            </view>
+            <view class="weui-tab__panel">
+                <view hidden="{{activeIndex != 0}}">
+
+                  <view class="page__hd">
+                      <view class="weui-flex">
+                        <view class="weui-flex__item">
+                          <view class="page__title">即查即走</view>
+                          <view class="page__desc">请扫码或输入区块链钱包地址</view>
+                        </view>
+                          <image class="kind-list__img" src="../../images/query.png"></image>
+                      </view>
+                  </view>
+                  <view class="page__bd">
+                      <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
+                      <form bindsubmit="formSubmit">
+                        <view class="weui-cells__title"></view>
+                        <view class="weui-cells weui-cells_after-title">
+                            <view class="weui-cell weui-cell_input">
+                              <view class="weui-cell__hd">
+                                  <view class="weui-label">钱包地址：</view>
+                              </view>
+                              <view class="weui-cell__bd">
+                                  <input bindblur="onBlur" bindinput="onInput" class="weui-input" name='address' placeholder="0x123..." value="{{address}}">
+                                  </input>
+                              </view>
+                              <view class="weui-cell__ft">
+                                  <icon type="warn" size="23" color="#E64340" wx:if="{{showInputTip}}"></icon>
+                              </view>
+                              <view class="weui-cell__ft">
+                                  <view bindtap="onPasteTap" class="weui-vcode-btn">粘贴</view>
+                              </view>
+                              <view class="weui-cell__ft">
+                                  <image bindtap="onBtnScan" class="weui-vcode-img" mode="aspectFit" src="../../images/scan_30.png" style="width:26px;padding-right:15px"></image>
+                              </view>    
+
+                            </view>
+
+
+                        </view>
+                        <view class="weui-cells__tips">输入地址为：{{addressTip}}</view>
+
+                        <view class="weui-btn-area">
+                          <button formType="submit" class="weui-btn" type="primary">查询余额</button>
+                        </view>
+                      </form>  
+                  </view>
+                  
+                  <view wx:if="{{isQueried}}">
+                    <view class="weui-panel weui-panel_access">
+                          <view class="weui-panel__hd">该地址拥有的虚拟货币如下：</view>
+                          <view class="weui-panel__bd">
+                              <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                                  <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                                      <image src='{{coinLogoSrc}}' class="weui-media-box__thumb"/>
+                                  </view>
+                                  <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                                      <view class="weui-media-box__title">币种：{{coinName}}</view>
+                                      <view class="weui-media-box__desc">余额：{{coinBalance}}</view>
+                                  </view>
+                              </navigator>
+                          </view>
+
+                    </view>
+                    <view class="weui-cells__tips" style="color:red">注意！能够查看钱包余额并不代表您拥有该钱包中的数字资产</view>
+                  </view>
+                    <!--
+                      <view>
+                        {{testContent}}
+                      </view>
+                    -->
+
+                  <view class="page__ft">
+                      <image style="width:100%;height:95px" src="../../images/advertisement.png"></image>
+                  </view>
+                </view>
+                
+<!-- ######### NavTab 2 ######### -->
+                <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+                    <view class="page__hd">
+                      <view class="weui-flex">
+                        <view class="weui-flex__item">
+                          <view class="page__title">安全钱包</view>
+                          <view class="page__desc">无需导入秘钥，确保资产安全</view>
+                        </view>
+                        <image class="kind-list__img" src="../../images/wallet.png"></image>
+                      </view>
+                    </view>
+
+                    <view class="page__bd">
+                        <view class="weui-flex">
+                          <view class="weui-flex__item">
+                            <view class="weui-cells__title">数字货币(Coins)</view>
+                          </view>  
+                          <image bindtap="onAddCoinWalletTap" class="weui-vcode-img" mode="aspectFit" src="../../images/add.png" style="width:18px;padding-right:15px;"></image>
+                        </view>  
+                        <view class="weui-cells weui-cells_after-title">
+                            <view wx:for="{{balList}}" class="weui-cell">
+                                <view class="weui-cell__hd">
+                                <image src="{{item.logoSrc}}" style="margin:2px;vertical-align: middle;width:40px; height: 40px;"></image>
+                                </view>
+                                <view class="weui-cell__bd">
+                                  <view style="padding-left:5px;">{{item.coinNameAbbr}}:</view>  
+                                  <view class="weui-cells__tips;" style="padding-left:5px;">{{item.addAbbr}}</view>
+                                </view>
+                                <view class="weui-cell__ft" style="color:black;">{{item.balance}}</view>
+                            </view>
+                        </view>
+                    </view>
+
+                    <view class="page__ft">
+                        <image style="width:100%;height:95px" src="../../images/advertisement.png"></image>
+                    </view>
+                </view>
+                
+<!-- ######### NavTab 3 ######### -->
+                <view class="weui-tab__content" hidden="{{activeIndex != 2}}">选项三的内容</view>
+            </view>
+        </view>
+    </view>
+</view>

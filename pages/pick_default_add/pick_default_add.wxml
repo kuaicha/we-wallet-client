@@ -1,0 +1,23 @@
+<view class="page" xmlns:wx="http://www.w3.org/1999/xhtml">
+    <view class="page__hd">
+        <view class="page__title">代币钱包</view>
+        <view class="page__desc">选择代币钱包地址</view>
+    </view>
+    <view class="page__bd">
+        
+      <view class="page-section">
+        <view class="page-section-title">   代币钱包地址列表：</view>
+        <view class="weui-cells weui-cells_after-title">
+          <radio-group bindchange="radioChange">
+            <label class="weui-cell weui-check__label" wx:for="{{items}}" wx:key="{{item.walletId}}">
+              <view class="weui-cell__hd">
+                <radio value="{{item.walletId}}" checked="{{item.checked}}"/>
+              </view>
+              <view class="weui-cell__bd weui-cells__tips">{{item.addressAbbr}}</view>
+            </label>
+          </radio-group>
+        </view>
+      </view>
+
+    </view>
+</view>
