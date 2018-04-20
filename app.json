@@ -8,7 +8,8 @@
     "pages/test/test",
     "pages/token/token",
     "pages/token_input/token_input",
-    "pages/pick_default_add/pick_default_add"
+    "pages/pick_default_add/pick_default_add",
+    "pages/ether_wallet/ether_wallet"
   ],
   "window": {
     "backgroundTextStyle": "light",

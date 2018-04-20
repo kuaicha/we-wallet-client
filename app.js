@@ -3,12 +3,13 @@ App({
   
   globalData: {
     userId: wx.getStorageSync('userId'), //读取本地userId
-    tokenAddList: wx.getStorageSync('tokenAddList'), //读取本地token地址列表
-    defaultTokenAdd:wx.getStorageSync('defaultTokenAdd'), //读取默认本地token地址
+    //tokenAddList: wx.getStorageSync('tokenAddList'), //读取本地token地址列表
+    tokenAddList: [{ 'address': '0xbcb2a11bb3420c521a0baa8c8bb624c383e294a0', 'addressAbbr': '0xbcb2a1 ... 83e294a0', 'walletId': 2, 'checked': 'true' }, { 'address': '0x0293fa72C359e04651485A74B0D96953312dEd53', 'addressAbbr': '0x0293fa ... 312dEd53', 'walletId': 11 }], //读取本地token地址列表
+    defaultWallet: wx.getStorageSync('defaultWallet'), //读取默认本地token地址
     balList: wx.getStorageSync('balList'),
     tokenList: wx.getStorageSync('tokenList'),
-    tokenAddList: wx.getStorageSync('tokenAddList'),
-    defaultTokenAdd: wx.getStorageSync('defaultTokenAdd'),
+    defaultWallet:{ 'address': '0xbcb2a11bb3420c521a0baa8c8bb624c383e294a0', 'walletId': 2},
+
     //hasLogin: false,  //目前只需要获得userId，后面就不再每次都登录
     kcURL: "https://qklkc.club/kc",
     coins: {
@@ -31,7 +32,7 @@ App({
     console.log("this.globalData.balList is loded:" + JSON.stringify(this.globalData.balList));
     console.log("this.globalData.tokenList is loded:" + JSON.stringify(this.globalData.tokenList));
     console.log("this.globalData.tokenAddList is loded:" + JSON.stringify(this.globalData.tokenAddList));
-    console.log("this.globalData.defaultTokenAdd is loded:" + JSON.stringify(this.globalData.defaultTokenAdd));
+  //  console.log("this.globalData.defaultTokenAdd is loded:" + JSON.stringify(this.globalData.defaultTokenAdd));
 
   },
 

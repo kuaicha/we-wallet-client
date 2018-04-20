@@ -13,6 +13,27 @@
         <button class="page-body-button" type="primary" bindtap="test">TEST</button>
       </block>
     </view>
+
+    <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__hd">
+                    <view class="weui-label">合约地址:</view>
+                </view>
+                <view class="weui-cell__bd">
+                    <input bindinput="onConInput" bindblur='onConBlur' class="weui-input" placeholder="输入合约地址" value="{{conAddress}}" style="left-padding:1px;">
+                    </input>
+                </view>
+                <view class="weui-cell__ft">
+                    <icon type="warn" size="23" color="#E64340" wx:if="{{showInputTip}}"></icon>
+                </view>
+                <view class="weui-cell__ft">
+                    <view bindtap="onConPasteTap" class="weui-vcode-btn">粘贴</view>
+                </view>
+                <view class="weui-cell__ft">
+                    <image bindtap="onConScanTap" class="weui-vcode-img" mode="aspectFit" src="../../images/scan_30.png" style="width:26px;padding-right:15px"></image>
+                </view>    
+            </view>
+            
+            
   </view>
 
 </view>
