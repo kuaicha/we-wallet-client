@@ -136,36 +136,6 @@ Page({
     })
   },
 
-  userRegister: function () {
-    console.log("userRegister() is call");
-    var that = this;
-    var rgstURL = app.globalData.kcURL + "/register";
-    wx.login({
-      success: function (res) {
-        let _code = res.code;
-        if (_code) {
-          wx.request({
-            url: rgstURL,
-            data: {
-              'code': _code,
-            },
-            success: res => {
-              console.log("userId is:" + res.data.userId);
-              app.globalData.userId = res.data.userId
-              wx.setStorageSync('userId', app.globalData.userId)
-            }
-          });
-        }
-      },
-      fail: res => {
-        wx.showToast({
-          title: '微信登录失败',
-          duration: 1500
-        });
-      }
-    });
-  },
-
 /** Navtab 1 Token 代币相关函数 */
 
   onWalletAddTap: function (e) {
@@ -254,16 +224,10 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+  
     var activeIndex = this.data.activeIndex;
-    console.log("onShow() is called and this.data.activeIndex is:" + activeIndex);
+    console.log("onReady() is called and this.data.activeIndex is:" + activeIndex);
     this.queryCoinWallet();
-
-    if (app.globalData.userId === "") {  //暂时用userId替代hasLogin，只要有userId就不需登录了。
-      console.log("local userId is null");
-      this.userRegister();
-    } else {
-      console.log("local userId is " + app.globalData.userId);
-    }
 
   },
 

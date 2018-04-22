@@ -183,9 +183,13 @@ Page({
               'code': _code,
             },
             success: res => {
+              console.log("userInfo is:" + JSON.stringify(res.data));
               console.log("userId is:" + res.data.userId);
-              app.globalData.userId = res.data.userId
-              wx.setStorageSync('userId', app.globalData.userId)
+              console.log("etherWalletId is:" + res.data.etherWalletId);
+              app.globalData.userInfo = res.data;
+              //app.globalData.etherWalletId = res.data.etherWalletId;
+              wx.setStorageSync('userInfo', app.globalData.userInfo);
+              //wx.setStorageSync('etherWalletId', app.globalData.etherWalletId);
             }
           });
         }

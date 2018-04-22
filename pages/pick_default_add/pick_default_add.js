@@ -36,7 +36,6 @@ Page({
    */
   onLoad: function (options) {
     console.log("app.globalData.tokenAddList is:" + JSON.stringify(app.globalData.tokenAddList));
-  
   },
 
   /**

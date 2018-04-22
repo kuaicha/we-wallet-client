@@ -121,10 +121,10 @@ Page({
 
       //成功之后回调
       success: function (res) {
-        //console.log("resp walletId: " + res.data.walletId);
+        console.log("resp: " + JSON.stringify(res.data));
         if (res.data.result==0){
-          app.globalData.defaultWallet = {'address':that.data.address,'walletId':res.data.walletId};
-          //console.log("app.globalData.defaultWallet is set to: " + JSON.stringify(app.globalData.defaultWallet));
+          app.globalData.defaultWallet = {'address':res.data.walletAddress,'walletId':res.data.walletId};
+          console.log("app.globalData.defaultWallet is set to: " + JSON.stringify(app.globalData.defaultWallet));
         }else{
           wx.showToast({
             title: '服务器维修中，请稍后再试',

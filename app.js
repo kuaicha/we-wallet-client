@@ -2,7 +2,7 @@
 App({
   
   globalData: {
-    userId: wx.getStorageSync('userId'), //读取本地userId
+    userId: wx.getStorageSync('userId').userId, //读取本地userId
     //tokenAddList: wx.getStorageSync('tokenAddList'), //读取本地token地址列表
     //tokenAddList: [{ 'address': '0xbcb2a11bb3420c521a0baa8c8bb624c383e294a0', 'addressAbbr': '0xbcb2a1 ... 83e294a0', 'walletId': 2, 'checked': 'true' }, { 'address': '0x0293fa72C359e04651485A74B0D96953312dEd53', 'addressAbbr': '0x0293fa ... 312dEd53', 'walletId': 11 }], //读取本地token地址列表
     defaultWallet: wx.getStorageSync('defaultWallet'), //读取默认本地token地址
@@ -37,8 +37,9 @@ App({
 
   onHide: function () {
     console.log("app.onHide() is Called")
-    wx.setStorageSync('balList', this.globalData.balList);
-    console.log("balList is stored: " + this.globalData.balList)
+    wx.setStorageSync('userId', this.globalData.userId);
+    wx.setStorageSync('defaultWallet', this.globalData.defaultWallet);
+    //console.log("balList is stored: " + this.globalData.balList)
   }
   
 })
