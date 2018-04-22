@@ -39,19 +39,15 @@ Page({
 
 
   onLoad: function () {
-    if (app.globalData.userId == null) {  //暂时用userId替代hasLogin，只要有userId就不需登录了。
-      console.log("local userId is null and called userRegister");
-      this.userRegister();
-    } else {
-      console.log("local userId is " + app.globalData.userId);
-    };
-    //console.log("Index Loaded")
+    
   },
+
   onShow: function() {
 
   },
+
   onReady: function(){
-    if (app.globalData.userId == null) {  //暂时用userId替代hasLogin，只要有userId就不需登录了。
+    if (app.globalData.userId === "") {  //暂时用userId替代hasLogin，只要有userId就不需登录了。
       console.log("local userId is null and called userRegister");
       this.userRegister();
     } else {
@@ -64,7 +60,6 @@ Page({
       }); 
     },2000);
     
-    setTimeout
   }
 
 })

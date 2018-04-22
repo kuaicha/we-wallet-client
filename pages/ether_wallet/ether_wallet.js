@@ -86,7 +86,7 @@ Page({
       })
     }
   },
-
+  
   createNewTWallet: function () {
 
     if (!this.data.isValidAdd) {
@@ -121,7 +121,7 @@ Page({
 
       //成功之后回调
       success: function (res) {
-        console.log("resp: " + JSON.stringify(res.data));
+        console.log("new token wallet resp: " + JSON.stringify(res.data));
         if (res.data.result==0){
           app.globalData.defaultWallet = {'address':res.data.walletAddress,'walletId':res.data.walletId};
           console.log("app.globalData.defaultWallet is set to: " + JSON.stringify(app.globalData.defaultWallet));
@@ -133,7 +133,7 @@ Page({
           });
         }
         wx.switchTab({
-          url: '../token/token'
+          url: '../wallet/wallet'
         });
       },
 

@@ -7,8 +7,11 @@ Page({
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,
-    //balList: app.globalData.balList
+    balList: app.globalData.balList,
+    tokenList: app.globalData.tokenList
   },
+
+/** Navtab 0 数字货币 相关函数 ********************************/
 
   onAddCoinWalletTap: function (e) {
     wx.navigateTo({
@@ -51,14 +54,15 @@ Page({
           //res.data[i].addAbbr = "***" + res.data[i].address.substr(-8, 8)
           res.data[i].coinNameAbbr = app.globalData.coins[res.data[i].coinid].coinNameAbbr
           res.data[i].logoSrc = "../../images/" + res.data[i].coinNameAbbr + "_logo_60.png"
-          console.log(res.data[i].logoSrc)
-        }
+          console.log(res.data[i].logoSrc);
+        };
         that.setData({
           balList: res.data,
-        })
+        });
+        app.globalData.balList = res.data;
         //balList = res.data;
         //console.log("Res Data Sting:" + JSON.stringify(res.data));
-        //console.log("app.globalData.balList:" + JSON.stringify(app.globalData.balList));
+        console.log("app.globalData.balList is set to:" + JSON.stringify(app.globalData.balList));
       },
 
       //失败回调
@@ -136,7 +140,10 @@ Page({
     })
   },
 
-/** Navtab 1 Token 代币相关函数 */
+
+/** Navtab 1 Token 代币相关函数 ********************************/
+/** Navtab 1 Token 代币相关函数 ********************************/
+/** Navtab 1 Token 代币相关函数 ********************************/
 
   onWalletAddTap: function (e) {
     wx.navigateTo({
@@ -150,23 +157,22 @@ Page({
     })
   },
 
-
   queryTWallet: function () {
+    //console.log("queryTWallet is called!")
+    //console.log("app.globalData.defaultWallet:" + JSON.stringify(app.globalData.defaultWallet));
+    if (JSON.stringify(app.globalData.defaultWallet) != "{}"){
+      this.setData({
+        defaultTokenAdd: app.globalData.defaultWallet.address,
+        defaultTokenAddAbbr: app.globalData.defaultWallet.address.substr(0, 8) + ' ... ' + app.globalData.defaultWallet.address.substr(-8, 8)      
+      });
+    }
 
-    this.setData({
-      //tokenList: app.globalData.tokenList,
-      //tokenAddList: app.globalData.tokenAddList,
-      defaultTokenAdd: app.globalData.defaultWallet.address,
-      defaultTokenAddAbbr: app.globalData.defaultWallet.address.substr(0, 8) + ' ... ' + app.globalData.defaultWallet.address.substr(-8, 8)
-    });
-
-    console.log("defaultTokenAdd:" + this.data.defaultTokenAdd);
-    console.log("app.globalData.defaultWallet.address:" + app.globalData.defaultWallet.address);
+    //console.log("defaultTokenAdd:" + this.data.defaultTokenAdd);
+    
 
     var tokenWalletURL = app.globalData.kcURL + "/twqry";
     var that = this;
-    console.log("defaultWalleid:" + app.globalData.defaultWallet.walletId);
-
+    
     wx.request({
       //请求地址
       url: tokenWalletURL,
@@ -197,7 +203,9 @@ Page({
         that.setData({
           tokenList: resList
         });
-        console.log("tokenList is set to:" + JSON.stringify(that.data.tokenList))
+        app.globalData.tokenList = resList;
+        console.log("app.globalData.tokenList is set to:" + JSON.stringify(app.globalData.tokenList))
+        
       },
 
       //失败回调
@@ -218,8 +226,6 @@ Page({
     });
   },
 
-
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -227,7 +233,7 @@ Page({
   
     var activeIndex = this.data.activeIndex;
     console.log("onReady() is called and this.data.activeIndex is:" + activeIndex);
-    this.queryCoinWallet();
+    //this.queryCoinWallet();
 
   },
 
@@ -242,9 +248,11 @@ Page({
       }
     });
 
-    this.queryCoinWallet();
+    //this.queryCoinWallet();
 
   },
+
+  /** page生命周期相关函数 ********************************/
 
   onShow: function () {
     //this.queryCoinWallet();
