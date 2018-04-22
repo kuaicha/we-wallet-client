@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tokenAddList: app.globalData.tokenAddList,
+    tokenAddList: app.globalData.tokenList,
   },
 
 
@@ -23,10 +23,10 @@ Page({
     }
     console.log("itmes is:"+ JSON.stringify(items));
     this.setData({
-      tokenAddList: items
+      tokenList: items
     });
     app.globalData.tokenAddList = items;
-    console.log("app.globalData.tokenAddList is set to:" + JSON.stringify(app.globalData.tokenAddList));
+    console.log("app.globalData.tokenList is set to:" + JSON.stringify(app.globalData.tokenList));
     console.log("app.globalData.defaultWallet is set to:" + JSON.stringify(app.globalData.defaultWallet));
     
   },

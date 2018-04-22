@@ -1,42 +1,11 @@
 <!--index.wxml-->
 <view class="page">
   <view class="page__bd">
-  <image class= "logo" mode="aspectFit" src="logo_big.png"></image>
-  
-  <!--<button bindtap="onButtonTap" class="weui-btn" type="primary" >查一查</button> -->
+    <image class= "logo" mode="aspectFit" src="logo_big.png"></image>
 
-  <view class="weui-footer">
+    <view class="weui-footer">
       <view class="weui-footer__text">Copyright © 2018 kuaicha.io</view>
-      </view>
+    </view>
   </view>
 </view>
 
-<!--
-
- <view class="label">
-      <text class="label">以太坊账户地址：</text>
-    </view>
-
-    <form bindsubmit="formSubmitJS">
-      <button class="weui-btn" type="primary">页面主操作 </button>
-
-    <view class="input">
-    <input name="input"  placeholder="账户地址" type="number"/> 
-    </view>
-    <text>\n</text>
-    
-    <view>
-      <button  formType="submit" type="primary">查余额</button>   
-    </view>
-    </form>
-
-
-    <view>
-      {{pageContent}}
-    </view>
-    
-    <view class="usermotto">
-      <text class="user-motto">{{motto}}</text>
-    </view>
-
--->

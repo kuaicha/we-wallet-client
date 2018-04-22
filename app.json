@@ -10,7 +10,10 @@
     "pages/token/token",
     "pages/token_input/token_input",
     "pages/pick_default_add/pick_default_add",
-    "pages/ether_wallet/ether_wallet"
+    "pages/ether_wallet/ether_wallet",
+    "pages/news/news",
+    "pages/price/price",
+    "pages/setting/setting"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -32,19 +35,19 @@
         "selectedIconPath": "images/wallet_81_green_full.png"
       },
       {
-        "pagePath": "pages/test/test",
+        "pagePath": "pages/price/price",
         "text": "行情",
-        "iconPath": "images/setting_81_grey.png",
-        "selectedIconPath": "images/setting_81_green_full.png"
+        "iconPath": "images/price_81_grey.png",
+        "selectedIconPath": "images/price_81_green_full.png"
       },
       {
-        "pagePath": "pages/test/test",
-        "text": "资讯",
-        "iconPath": "images/setting_81_grey.png",
-        "selectedIconPath": "images/setting_81_green_full.png"
+        "pagePath": "pages/news/news",
+        "text": "头条",
+        "iconPath": "images/quiry_81_grey.png",
+        "selectedIconPath": "images/quiry_81_green_full.png"
       },
       {
-        "pagePath": "pages/test/test",
+        "pagePath": "pages/setting/setting",
         "text": "设置",
         "iconPath": "images/setting_81_grey.png",
         "selectedIconPath": "images/setting_81_green_full.png"
