@@ -23,7 +23,7 @@ Page({
 
 
   queryTWallet: function () {
-
+    console.log("queryTWallet is called");
     this.setData({
       //tokenList: app.globalData.tokenList,
       //tokenAddList: app.globalData.tokenAddList,

@@ -3,19 +3,11 @@ const app = getApp();
 
 Page({
   data: {
-    tabs: ["即查即走", "安全钱包", "Token钱包"],
+    tabs: ["数字货币", "Token代币"],
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0,
-    //data of the 1st navtab(page input)
-    textAlign: "text-align:left",
-    isQueried: false,
-    resultLogoSrc: null,
-    //data of the 2nd navtab(page list)
-    //itemIcon: "ether_logo_small.png",
-    balList: app.globalData.balList
-
-
+    //balList: app.globalData.balList
   },
 
   onAddCoinWalletTap: function (e) {
@@ -25,6 +17,7 @@ Page({
   },
 
   queryCoinWallet: function () {
+    console.log("queryCoinWallet() is called")
 
     var coinWalletURL = app.globalData.kcURL + "/cwqry";
     var that = this;
@@ -86,23 +79,24 @@ Page({
     });
   },
 
-  onLoad: function () {
-    var that = this;
-    wx.getSystemInfo({
-      success: function (res) {
-        that.setData({
-          sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
-          sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
-        });
-      }
-    });
-  },
-
   tabClick: function (e) {
     this.setData({
       sliderOffset: e.currentTarget.offsetLeft,
       activeIndex: e.currentTarget.id
     });
+    var activeIndex = this.data.activeIndex;
+    console.log("tabClick() is called and this.data.activeIndex is:" + activeIndex);
+    wx.showLoading({
+      title: '数据刷新中',
+      mask: true
+    });
+    if (activeIndex == 0) {
+      this.queryCoinWallet();
+    } else if (activeIndex == 1) {
+      this.queryTWallet();
+    }
+
+
   },
 
   onPasteTap: function () {
@@ -142,100 +136,6 @@ Page({
     })
   },
 
-
-  formSubmit: function (e) {
-
-    this.setData({
-      isQueried: false
-    });
-
-    const regCheck = /^\w+$/;
-    var address = e.detail.value.address;
-
-    //console.log("e.detail.value:" + e.detail.value.address);
-    console.log("address：" + address);
-
-    if (regCheck.test(address)) {
-      console.log("test passed");
-      this.addBalanceQuery(address);
-    }
-    else {
-      wx.showModal({
-        content: '钱包地址错误，请重新输入',
-        showCancel: false,
-        success: function (res) {
-          if (res.confirm) {
-            //console.log('用户点击地址错误提示')
-          }
-        }
-      });
-    }
-  },
-
-  addBalanceQuery: function (address) {
-    //查询余额
-    var addQueryURL = app.globalData.kcURL + "/addqry";
-    var that = this;
-
-    console.log("addBalanceQuery: " + address);
-
-    wx.showLoading({
-      title: '查询中',
-      mask: true
-    });
-
-    wx.request({
-
-      //请求地址
-      url: addQueryURL,
-
-      data: {
-        ad: address,
-      },
-
-      //请求方式
-      method: 'GET',
-
-      //成功之后回调
-      success: function (res) {
-
-        if (res.statusCode != 200) {
-          wx.showToast({
-            title: '服务器维护中，查询失败...',
-            icon: 'none',
-            duration: 2000,
-          });
-          return;
-        }
-
-        that.setData({
-          coinName: res.data[0].name,
-          coinBalance: res.data[0].balance,
-          //testContent: JSON.stringify(res.data),
-          coinLogoSrc: ("../../images/" + res.data[0].name + "_logo_60.png"),
-          isQueried: true
-        });
-      },
-      //失败回调
-      fail: function (err) {
-        console.log("request fail:" + err);
-        wx.showToast({
-          title: '网络不给力，请稍后再试',
-          icon: 'none',
-          duration: 2000,
-        });
-
-      },
-
-      //结束回调
-      complete: function (err) {
-        console.log("request complete:" + err)
-        wx.hideLoading()
-      }
-    });
-
-  },
-
   userRegister: function () {
     console.log("userRegister() is call");
     var that = this;
@@ -266,10 +166,98 @@ Page({
     });
   },
 
+/** Navtab 1 Token 代币相关函数 */
+
+  onWalletAddTap: function (e) {
+    wx.navigateTo({
+      url: '../ether_wallet/ether_wallet',
+    })
+  },
+
+  onAddTap: function (e) {
+    wx.navigateTo({
+      url: '../token_input/token_input',
+    })
+  },
+
+
+  queryTWallet: function () {
+
+    this.setData({
+      //tokenList: app.globalData.tokenList,
+      //tokenAddList: app.globalData.tokenAddList,
+      defaultTokenAdd: app.globalData.defaultWallet.address,
+      defaultTokenAddAbbr: app.globalData.defaultWallet.address.substr(0, 8) + ' ... ' + app.globalData.defaultWallet.address.substr(-8, 8)
+    });
+
+    console.log("defaultTokenAdd:" + this.data.defaultTokenAdd);
+    console.log("app.globalData.defaultWallet.address:" + app.globalData.defaultWallet.address);
+
+    var tokenWalletURL = app.globalData.kcURL + "/twqry";
+    var that = this;
+    console.log("defaultWalleid:" + app.globalData.defaultWallet.walletId);
+
+    wx.request({
+      //请求地址
+      url: tokenWalletURL,
+
+      data: {
+        wid: app.globalData.defaultWallet.walletId
+      },
+
+      //请求方式
+      method: 'GET',
+
+      //成功之后回调
+      success: function (res) {
+        console.log("Resp Data String:" + JSON.stringify(res.data));
+        if (res.statusCode != 200) {
+          wx.showToast({
+            title: '服务器维护中，数据未更新...',
+            icon: 'none',
+            duration: 2000,
+          });
+          return;
+        }
+
+        var resList = res.data;
+        for (var i = 0; i < resList.length; i++) {
+          resList[i].conAddAbbr = resList[i].contract_address.substr(0, 8) + " ... " + resList[i].contract_address.substr(-8, 8)
+        }
+        that.setData({
+          tokenList: resList
+        });
+        console.log("tokenList is set to:" + JSON.stringify(that.data.tokenList))
+      },
+
+      //失败回调
+      fail: function (err) {
+        console.log("request fail:" + err)
+        wx.showToast({
+          title: '网络不给力，数据更新失败！',
+          icon: 'none',
+          duration: 2000,
+        });
+      },
+
+      //结束回调
+      complete: function (err) {
+        console.log("request complete:" + err)
+        wx.hideLoading()
+      }
+    });
+  },
+
+
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
+    var activeIndex = this.data.activeIndex;
+    console.log("onShow() is called and this.data.activeIndex is:" + activeIndex);
+    this.queryCoinWallet();
+
     if (app.globalData.userId === "") {  //暂时用userId替代hasLogin，只要有userId就不需登录了。
       console.log("local userId is null");
       this.userRegister();
@@ -277,6 +265,69 @@ Page({
       console.log("local userId is " + app.globalData.userId);
     }
 
+  },
+
+  onLoad: function (option) {
+    var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
+          sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex
+        });
+      }
+    });
+
+    this.queryCoinWallet();
+
+  },
+
+  onShow: function () {
+    //this.queryCoinWallet();
+    var activeIndex =  this.data.activeIndex;
+    console.log("onShow() is called and this.data.activeIndex is:" + activeIndex);
+    wx.showLoading({
+      title: '数据刷新中',
+      mask: true
+    });
+    if (activeIndex == 0){
+      this.queryCoinWallet();
+    } else if (activeIndex == 1){
+      this.queryTWallet();
+    }
+    
+    /**
+    wx.showLoading({
+      title: '数据刷新中',
+      //mask: true
+    });
+    
+    switch (activeIndex) {
+      case 0:
+        console.log("case 0");
+        this.queryCoinWallet();
+        break;
+      case 1:
+        console.log("case 1");
+        this.queryTWallet();
+        break;
+    };
+
+     */
+  },
+
+  onPullDownRefresh: function () {
+    var activeIndex = this.data.activeIndex;
+    console.log("onPullDownRefresh is called")
+    wx.showLoading({
+      title: '数据刷新中...',
+      mask: true
+    });
+    if (activeIndex == 0) {
+      this.queryCoinWallet();
+    } else if (activeIndex == 1) {
+      this.queryTWallet();
+    }
   },
 
 });

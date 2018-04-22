@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/wallet/wallet",
     "pages/input/input",
     "pages/list/list",
     "pages/logs/logs",
@@ -9,8 +10,7 @@
     "pages/token/token",
     "pages/token_input/token_input",
     "pages/pick_default_add/pick_default_add",
-    "pages/ether_wallet/ether_wallet",
-    "pages/wallet/wallet"
+    "pages/ether_wallet/ether_wallet"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -26,34 +26,28 @@
     "backgroundColor": "#ffffff",
     "list": [
       {
-        "pagePath": "pages/input/input",
-        "text": "即查即走",
-        "iconPath": "images/quiry_81_grey.png",
-        "selectedIconPath": "images/quiry_81_green_full.png"
-      },
-      {
-        "pagePath": "pages/list/list",
-        "text": "安全钱包",
+        "pagePath": "pages/wallet/wallet",
+        "text": "钱包",
         "iconPath": "images/wallet_81_grey.png",
         "selectedIconPath": "images/wallet_81_green_full.png"
       },
       {
-        "pagePath": "pages/token/token",
-        "text": "Token钱包",
-        "iconPath": "images/token_81_grey.png",
-        "selectedIconPath": "images/token_81_green_full.png"
+        "pagePath": "pages/test/test",
+        "text": "行情",
+        "iconPath": "images/setting_81_grey.png",
+        "selectedIconPath": "images/setting_81_green_full.png"
+      },
+      {
+        "pagePath": "pages/test/test",
+        "text": "资讯",
+        "iconPath": "images/setting_81_grey.png",
+        "selectedIconPath": "images/setting_81_green_full.png"
       },
       {
         "pagePath": "pages/test/test",
         "text": "设置",
         "iconPath": "images/setting_81_grey.png",
         "selectedIconPath": "images/setting_81_green_full.png"
-      },
-      {
-        "pagePath": "pages/wallet/wallet",
-        "text": "钱包",
-        "iconPath": "images/wallet_81_grey.png",
-        "selectedIconPath": "images/wallet_81_green_full.png"
       }
     ]
   }

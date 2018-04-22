@@ -191,10 +191,11 @@ Page({
           console.log("resp coinID: " + res.data[0].coinid);
           console.log("resp coinBalance: " + res.data[0].balance);
           console.log("resp address: " + res.data[0].address);
+          
           wx.switchTab({
-            url: '../list/list'
-          }); 
-
+            url: '../wallet/wallet'
+          });
+          app.globalData.refreshNavtabId = 1;
         },
 
         //失败回调

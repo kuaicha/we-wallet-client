@@ -66,7 +66,7 @@ Page({
 */
     setTimeout(function () {
       wx.switchTab({
-        url: '../input/input'
+        url: '../wallet/wallet'
       }); 
     }, 800) //延迟时间,单位是毫秒
 
