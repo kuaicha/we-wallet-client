@@ -21,11 +21,18 @@ Page({
               'code': _code,
             },
             success: res => {
-              console.log("userId is:" + res.data.userId);
-              app.globalData.userId = res.data.userId
-              app.globalData.defaultWallet = { 'address': res.data.etherWalletAddress, 'walletId': res.data.etherWalletId };
-              wx.setStorageSync('userId', app.globalData.userId);
-              wx.setStorageSync('defaultWallet', app.globalData.defaultWallet);
+              if (res.statusCode != 200){
+                return;
+              }else{
+                //console.log("userId registered is:" + res.data.userId);
+                app.globalData.userId = res.data.userId
+                //console.log("app.globalData.userId registered is :" + app.globalData.userId);
+                //console.log("test result is :" + (app.globalData.userId == undefined));
+                app.globalData.defaultWallet = { 'address': res.data.etherWalletAddress, 'walletId': res.data.etherWalletId };
+                wx.setStorageSync('userId', app.globalData.userId);
+                //console.log("userId is stored:" + wx.getStorageSync('userId'));
+                wx.setStorageSync('defaultWallet', app.globalData.defaultWallet);
+              }
             }
           });
         }
@@ -49,8 +56,8 @@ Page({
   },
 
   onReady: function(){
-    if (app.globalData.userId === "") {  //暂时用userId替代hasLogin，只要有userId就不需登录了。
-      console.log("local userId is null and called userRegister");
+    if (app.globalData.userId == '' || app.globalData.userId == null) {  //暂时用userId替代hasLogin，只要有userId就不需登录了。
+      console.log("local userId is '' and called userRegister");
       this.userRegister();
     } else {
       console.log("local userId is " + app.globalData.userId);

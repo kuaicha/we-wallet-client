@@ -139,6 +139,7 @@
                     </view>
 
                     <view class="page__bd">
+
                         <view class="weui-flex">
                           <view class="weui-flex__item">
                             <view class="weui-cells__title">代币钱包</view>
@@ -158,6 +159,7 @@
                             </navigator>
                           </view>
                         </view>
+                        
 
                         <view wx:if="{{tokenList}}">
                           <view class="weui-flex" >

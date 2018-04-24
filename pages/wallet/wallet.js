@@ -44,8 +44,12 @@ Page({
           wx.showToast({
             title: '服务器维护中，数据未更新...',
             icon: 'none',
-            duration: 2000,
+            duration: 3000,
           });
+          that.setData({
+            balList: wx.getStorageSync('balList'),
+          });
+          app.globalData.balList = that.data.balList;
           return;
         }
         var resList = res.data;
@@ -71,8 +75,14 @@ Page({
         wx.showToast({
           title: '网络不给力，数据更新失败！',
           icon: 'none',
-          duration: 2000,
+          duration: 3000,
         });
+        
+
+        that.setData({
+        balList: wx.getStorageSync('balList'),
+        });
+        app.globalData.balList = that.data.balList;
       },
 
       //结束回调
@@ -82,64 +92,6 @@ Page({
       }
     });
   },
-
-  tabClick: function (e) {
-    this.setData({
-      sliderOffset: e.currentTarget.offsetLeft,
-      activeIndex: e.currentTarget.id
-    });
-    var activeIndex = this.data.activeIndex;
-    console.log("tabClick() is called and this.data.activeIndex is:" + activeIndex);
-    wx.showLoading({
-      title: '数据刷新中',
-      mask: true
-    });
-    if (activeIndex == 0) {
-      this.queryCoinWallet();
-    } else if (activeIndex == 1) {
-      this.queryTWallet();
-    }
-
-
-  },
-
-  onPasteTap: function () {
-    var that = this;
-    wx.getClipboardData({
-      success: function (res) {
-        //console.log(res.data)
-        that.setData({
-          address: res.data,
-          addressTip: res.data
-        })
-
-      }
-    })
-  },
-
-  onBtnScan: function () {
-    var that = this;
-    wx.scanCode({
-      success: (res) => {
-        console.log(res.result);
-        that.setData({
-          addressTip: res.result
-        })
-      }
-    })
-
-  },
-
-  onBlur: function () {
-
-  },
-
-  onInput: function (e) {
-    this.setData({
-      addressTip: e.detail.value,
-    })
-  },
-
 
 /** Navtab 1 Token 代币相关函数 ********************************/
 /** Navtab 1 Token 代币相关函数 ********************************/
@@ -191,8 +143,12 @@ Page({
           wx.showToast({
             title: '服务器维护中，数据未更新...',
             icon: 'none',
-            duration: 2000,
+            duration: 3000,
           });
+          that.setData({
+            tokenList: wx.getStorageSync('tokenList')
+          });
+          app.globalData.tokenList = that.data.tokenList;
           return;
         }
 
@@ -203,9 +159,9 @@ Page({
         that.setData({
           tokenList: resList
         });
+
         app.globalData.tokenList = resList;
         console.log("app.globalData.tokenList is set to:" + JSON.stringify(app.globalData.tokenList))
-        
       },
 
       //失败回调
@@ -214,8 +170,13 @@ Page({
         wx.showToast({
           title: '网络不给力，数据更新失败！',
           icon: 'none',
-          duration: 2000,
+          duration: 3000,
         });
+        that.setData({
+          tokenList: wx.getStorageSync('tokenList')
+        });
+        app.globalData.tokenList = that.data.tokenList;
+
       },
 
       //结束回调
@@ -226,9 +187,14 @@ Page({
     });
   },
 
+
+
+  /** page生命周期相关函数 ********************************/
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
+
+
   onReady: function () {
   
     var activeIndex = this.data.activeIndex;
@@ -248,44 +214,33 @@ Page({
       }
     });
 
-    //this.queryCoinWallet();
+
 
   },
-
-  /** page生命周期相关函数 ********************************/
 
   onShow: function () {
     //this.queryCoinWallet();
     var activeIndex =  this.data.activeIndex;
     console.log("onShow() is called and this.data.activeIndex is:" + activeIndex);
-    wx.showLoading({
-      title: '数据刷新中',
-      mask: true
-    });
-    if (activeIndex == 0){
-      this.queryCoinWallet();
-    } else if (activeIndex == 1){
-      this.queryTWallet();
-    }
-    
-    /**
-    wx.showLoading({
-      title: '数据刷新中',
-      //mask: true
-    });
-    
-    switch (activeIndex) {
-      case 0:
-        console.log("case 0");
+    if (activeIndex == 0) {
+      if (app.globalData.balList == '' || app.globalData.balList == null ){
+        wx.showLoading({
+          title: '数据刷新中',
+          mask: true
+        });
         this.queryCoinWallet();
-        break;
-      case 1:
-        console.log("case 1");
+      }
+    } else  if (activeIndex == 1) {
+      if (app.globalData.tokenList == '' || app.globalData.tokenList == null) {
+        wx.showLoading({
+          title: '数据刷新中',
+          mask: true
+        });
         this.queryTWallet();
-        break;
-    };
+      }
+    
+    }
 
-     */
   },
 
   onPullDownRefresh: function () {
@@ -301,5 +256,32 @@ Page({
       this.queryTWallet();
     }
   },
+
+  tabClick: function (e) {
+    this.setData({
+      sliderOffset: e.currentTarget.offsetLeft,
+      activeIndex: e.currentTarget.id
+    });
+    var activeIndex = this.data.activeIndex;
+    console.log("tabClick() is called and this.data.activeIndex is:" + activeIndex);
+    if (activeIndex == 0) {
+      if (app.globalData.balList == '' || app.globalData.balList == null) {
+        wx.showLoading({
+          title: '数据刷新中',
+          mask: true
+        });
+        this.queryCoinWallet();
+      }
+    } else if (activeIndex == 1) {
+      if (app.globalData.tokenList == '' || app.globalData.tokenList == null) {
+        wx.showLoading({
+          title: '数据刷新中',
+          mask: true
+        });
+        this.queryTWallet();
+      }
+    } 
+  },
+
 
 });
