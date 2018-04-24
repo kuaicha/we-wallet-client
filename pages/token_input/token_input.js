@@ -146,7 +146,7 @@ Page({
         //wx.setStorageSync('defaultTokenAdd', app.globalData.defaultTokenAdd);
         
         wx.switchTab({
-          url: '../token/token'
+          url: '../wallet/wallet'
         });
       },
 

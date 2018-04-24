@@ -27,13 +27,15 @@ App({
   },
 
   onHide: function () {
-    console.log("app.onHide() is Called")
-    wx.setStorageSync('userId', this.globalData.userId);
-    wx.setStorageSync('defaultWallet', this.globalData.defaultWallet);
+    console.log("app.onHide() is Called");
+    console.log("this.globalData.userId is:" + this.globalData.userId);
+    console.log("this.globalData.defaultWallet is:" + JSON.stringify(this.globalData.defaultWallet));
+    console.log("this.globalData.balList is loded:" + JSON.stringify(this.globalData.balList));
+    console.log("this.globalData.tokenList is loded:" + JSON.stringify(this.globalData.tokenList));
     wx.setStorageSync('balList', this.globalData.balList);
     wx.setStorageSync('tokenList', this.globalData.tokenList);
-    console.log("tokenList is stored: " + wx.getStorageSync('tokenList'))
-
+    console.log("tokenList is stored: " + wx.getStorageSync('tokenList'));
+    
   }
   
 })

@@ -24,6 +24,8 @@ Page({
               console.log("userId is:" + res.data.userId);
               app.globalData.userId = res.data.userId
               app.globalData.defaultWallet = { 'address': res.data.etherWalletAddress, 'walletId': res.data.etherWalletId };
+              wx.setStorageSync('userId', app.globalData.userId);
+              wx.setStorageSync('defaultWallet', app.globalData.defaultWallet);
             }
           });
         }
@@ -58,7 +60,7 @@ Page({
       wx.switchTab({
         url: '../wallet/wallet'
       }); 
-    },2000);
+    },3000);
     
   }
 

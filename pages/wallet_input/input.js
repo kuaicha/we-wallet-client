@@ -195,7 +195,6 @@ Page({
           wx.switchTab({
             url: '../wallet/wallet'
           });
-          app.globalData.refreshNavtabId = 1;
         },
 
         //失败回调

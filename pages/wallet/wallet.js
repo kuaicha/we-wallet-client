@@ -158,9 +158,9 @@ Page({
   },
 
   queryTWallet: function () {
-    //console.log("queryTWallet is called!")
-    //console.log("app.globalData.defaultWallet:" + JSON.stringify(app.globalData.defaultWallet));
-    if (JSON.stringify(app.globalData.defaultWallet) != "{}"){
+    console.log("queryTWallet is called!")
+    console.log("app.globalData.defaultWallet:" + JSON.stringify(app.globalData.defaultWallet));
+    if ((JSON.stringify(app.globalData.defaultWallet) != "{}") && app.globalData.defaultWallet.address != null ){
       this.setData({
         defaultTokenAdd: app.globalData.defaultWallet.address,
         defaultTokenAddAbbr: app.globalData.defaultWallet.address.substr(0, 8) + ' ... ' + app.globalData.defaultWallet.address.substr(-8, 8)      

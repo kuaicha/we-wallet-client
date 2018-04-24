@@ -170,7 +170,7 @@ Page({
   },
 
   userRegister: function () {
-    console.log("userRegister() is call");
+    console.log("userRegister() is being called");
     var that = this;
     var rgstURL = app.globalData.kcURL + "/register";
     wx.login({
@@ -278,8 +278,8 @@ Page({
    */
   onReady: function () {
     if (app.globalData.userId === "") {  //暂时用userId替代hasLogin，只要有userId就不需登录了。
-      console.log("local userId is null");
-      this.userRegister();
+      console.log("local userId is null but userRegister is not called");
+      //this.userRegister();
     } else {
       console.log("local userId is " + app.globalData.userId);
     }

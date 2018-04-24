@@ -1,0 +1,10 @@
+<!--setting.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <image class= "logo"  mode="aspectFit" src="setting.png"></image>
+
+    <view class="weui-footer">
+      <view class="weui-footer__text">COMING SOON ... </view>
+    </view>
+  </view>
+</view>
