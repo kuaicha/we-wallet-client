@@ -7,6 +7,7 @@ App({
     //balList: wx.getStorageSync('balList'),
     //tokenList: wx.getStorageSync('tokenList'),
     kcURL: "https://qklkc.club/kc",
+    kwURL: "https://qklkc.club/kw1/wallet",
     coins: {
       1: { "coinNameAbbr": "BTC", "coinNameCn": "比特币" },
       2: { "coinNameAbbr": "ETH", "coinNameCn": "以太坊" },

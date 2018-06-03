@@ -108,6 +108,7 @@
                         </view>  
                         <view class="weui-cells weui-cells_after-title">
                             <view wx:for="{{balList}}" class="weui-cell">
+                              <navigator url="../transaction/transaction" class="weui-cell">
                                 <view class="weui-cell__hd">
                                 <image src="{{item.logoSrc}}" style="margin:2px;vertical-align: middle;width:40px; height: 40px;"></image>
                                 </view>
@@ -116,6 +117,7 @@
                                   <view class="weui-cells__tips;" style="padding-left:5px;">{{item.addAbbr}}</view>
                                 </view>
                                 <view class="weui-cell__ft" style="color:black;">{{item.balance}}</view>
+                              </navigator>
                             </view>
                         </view>
                     </view>

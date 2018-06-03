@@ -13,7 +13,8 @@
     "pages/ether_wallet/ether_wallet",
     "pages/news/news",
     "pages/price/price",
-    "pages/setting/setting"
+    "pages/setting/setting",
+    "pages/transaction/transaction"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,39 +1,99 @@
-<view class="container">
-
-  <view class="page-body">
-    <view class="page-section">
-      <block>
-        <text class="page-body-title">已登录</text>
-        <text class="page-body-text">每个微信号中仅需登录 1 次，后续每次进入页面即可根据微信 id 自动拉取用户信息</text>
-      </block>
-      <block>
-        <text class="page-body-text">每个微信号中仅需登录一次</text>
-        <button class="page-body-button" type="primary" bindtap="clearuserId">清空UID</button>
-        <text>\n</text>
-        <button class="page-body-button" type="primary" bindtap="test">TEST</button>
-      </block>
+<!--input.wxml-->
+<view class="page" style="min-height: 100%;" xmlns:wx="http://www.w3.org/1999/xhtml">
+    <view class="page__hd">
+        <view class="weui-flex">
+          <view class="weui-flex__item">
+            <view class="page__title">测试页</view>
+            <view class="page__desc">功能测试</view>
+          </view>
+            <image class="kind-list__img" src="../../images/query.png"></image>
+        </view>
     </view>
+    <text>\n</text>
 
-    <view class="weui-cell weui-cell_input">
+    <view class="page__bd">
+        <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips}}">错误提示</view>
+        <form bindsubmit="formSubmit">
+          <view class="weui-cells__title"></view>
+          <view class="weui-cells weui-cells_after-title">
+
+<!-- 暂时隐藏第一种前端UI
+              <view class="weui-cell weui-cell_input">
+                  <view class="weui-cell__hd">
+                      <view class="weui-label">钱包地址：</view>
+                  </view>
+                  <view class="weui-cell__bd" >
+                      <input  bindblur="onBlur" bindinput="onInput" class="weui-input" name='address' placeholder="0x123..." value="{{address}}" style="{{textAlign}}"/>
+                  </view>
+                  <view class="weui-cell__ft" style="display:flex; justify-content: center">
+                    <image bindtap="onPasteTap" class="weui-vcode-img" mode="aspectFit" src="paste.png" style="width:26px"></image>
+                  </view>
+              </view>
+-->
+              <view class="weui-cell weui-cell_input">
                 <view class="weui-cell__hd">
-                    <view class="weui-label">合约地址:</view>
+                    <view class="weui-label">钱包地址：</view>
                 </view>
                 <view class="weui-cell__bd">
-                    <input bindinput="onConInput" bindblur='onConBlur' class="weui-input" placeholder="输入合约地址" value="{{conAddress}}" style="left-padding:1px;">
+                    <input bindblur="onBlur" bindinput="onInput" class="weui-input" name='address' placeholder="0x123..." value="{{address}}">
                     </input>
                 </view>
                 <view class="weui-cell__ft">
                     <icon type="warn" size="23" color="#E64340" wx:if="{{showInputTip}}"></icon>
                 </view>
                 <view class="weui-cell__ft">
-                    <view bindtap="onConPasteTap" class="weui-vcode-btn">粘贴</view>
+                    <view bindtap="onPasteTap" class="weui-vcode-btn">粘贴</view>
                 </view>
                 <view class="weui-cell__ft">
-                    <image bindtap="onConScanTap" class="weui-vcode-img" mode="aspectFit" src="../../images/scan_30.png" style="width:26px;padding-right:15px"></image>
+                    <image bindtap="onBtnScan" class="weui-vcode-img" mode="aspectFit" src="../../images/scan_30.png" style="width:26px;padding-right:15px"></image>
                 </view>    
+
+              </view>
+
+
+          </view>
+          <view class="weui-cells__tips">输入地址为：{{addressTip}}</view>
+
+          <view class="weui-btn-area">
+            <button formType="submit" class="weui-btn" type="primary">查询余额</button>
+          </view>
+        </form>  
+    </view>
+    
+    <view wx:if="{{isQueried}}">
+      <view class="weui-panel weui-panel_access">
+            <view class="weui-panel__hd">该地址拥有的虚拟货币如下：</view>
+            <view class="weui-panel__bd">
+                <navigator url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active">
+                    <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
+                        <image src='{{coinLogoSrc}}' class="weui-media-box__thumb"/>
+                    </view>
+                    <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
+                        <view class="weui-media-box__title">币种：{{coinName}}</view>
+                        <view class="weui-media-box__desc">余额：{{coinBalance}}</view>
+                    </view>
+                </navigator>
             </view>
             
-            
-  </view>
+            <!--
+              <view class="weui-panel__ft">
+                  <view class="weui-cell weui-cell_access weui-cell_link">
+                      <view class="weui-cell__bd">查看更多</view>
+                      <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+                  </view>
+              </view>
+            -->
 
+      </view>
+      <view class="weui-cells__tips" style="color:red">注意！能够查看钱包余额并不代表您拥有该钱包中的数字资产</view>
+    </view>
+      <!--
+        <view>
+          {{testContent}}
+        </view>
+      -->
+
+    <view class="page__ft">
+        <image style="width:100%;height:95px" src="../../images/advertisement.png"></image>
+    </view>
 </view>

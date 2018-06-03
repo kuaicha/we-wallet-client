@@ -1,0 +1,27 @@
+<!--transaction.wxml-->
+
+<view class="page">
+    <view class="page__bd">
+        <view class="weui-flex">
+          <view class="weui-flex__item">
+            <view class="weui-cells__title">交易记录</view>
+          </view>
+        </view>  
+        <view class="weui-cells weui-cells_after-title">
+            <view wx:for="{{txList}}" class="weui-cell">
+
+                <view class="weui-cell__hd"></view>
+                <view class="weui-cell__bd">
+                  <view style="padding-left:5px;">{{item.oper}}:</view>
+                  <view class="weui-cells__tips;" style="padding-left:5px;">{{item.addAbbr}}</view>
+                </view>
+                <view class="weui-cell__ft" style="color:black;">{{item.value}}</view>
+
+            </view>
+        </view>
+    </view>
+    <view class="page__ft">
+        <image style="width:100%;height:95px" src="../../images/advertisement.png"></image>
+    </view>
+</view>
+                
